@@ -296,32 +296,69 @@ function initMobileMenu() {
       hamburger.setAttribute('aria-expanded', 'false');
     });
   });
+
+function initStickyHeader() {
+  const header = $('#header'); // Certifique-se que o ID do seu header é 'header'
+  let lastScrollY = window.scrollY;
+
+  if (!header) return;
+
+  window.addEventListener('scroll', () => {
+    const currentScrollY = window.scrollY;
+
+    if (currentScrollY > lastScrollY && currentScrollY > 100) {
+      // Rolando para baixo - Esconde o menu
+      header.style.transform = 'translateY(-100%)';
+      header.style.transition = 'transform 0.3s ease-in-out';
+    } else {
+      // Rolando para cima - Mostra o menu
+      header.style.transform = 'translateY(0)';
+    }
+
+    lastScrollY = currentScrollY;
+  });
+}
+
+// Chame a função para iniciar
+initStickyHeader();
 }
 
 // ─── CARROSSEL ──────────────────────────────────────────────────────────────
 
 function initCarousel() {
   const track = $('.carousel-track');
-  const slides = $$('.carousel-slide');
+  const slides = Array.from($$('.carousel-slide'));
   const dots = $$('.dot');
   
   if (!track || !slides.length) return;
 
   let index = 0;
+  let scrollInterval;
+  let startX = 0;
+  let isDragging = false;
 
-  // Função única para mudar o slide
+  // 1. Função de transição otimizada
   const goTo = (newIndex) => {
-    // Lógica circular (vai do último para o primeiro e vice-versa)
     index = (newIndex + slides.length) % slides.length;
     
-    // Atualiza o Visual
+    // Usa transform para melhor performance (GPU)
+    track.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
     track.style.transform = `translateX(-${index * 100}%)`;
     
-    // Atualiza os dots (se existirem)
+    // Atualiza indicadores
     dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+    
+    // Reinicia o timer para evitar "pulos" logo após clique manual
+    resetTimer();
   };
 
-  // Event Listeners Dinâmicos
+  // 2. Timer Inteligente
+  const resetTimer = () => {
+    clearInterval(scrollInterval);
+    scrollInterval = setInterval(() => goTo(index + 1), 5000);
+  };
+
+  // 3. Eventos de Clique
   $('#nextBtn')?.addEventListener('click', () => goTo(index + 1));
   $('#prevBtn')?.addEventListener('click', () => goTo(index - 1));
 
@@ -329,10 +366,29 @@ function initCarousel() {
     dot.addEventListener('click', () => goTo(i));
   });
 
-  // Auto-play simplificado
-  setInterval(() => goTo(index + 1), 5000);
-}
+  // 4. Suporte a Swipe (Toque no Mobile)
+  track.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+    isDragging = true;
+    clearInterval(scrollInterval); // Pausa o auto-play enquanto o usuário interage
+  }, { passive: true });
 
+  track.addEventListener('touchend', (e) => {
+    if (!isDragging) return;
+    const endX = e.changedTouches[0].clientX;
+    const diff = startX - endX;
+
+    if (Math.abs(diff) > 50) { // Sensibilidade de 50px
+      diff > 0 ? goTo(index + 1) : goTo(index - 1);
+    } else {
+      goTo(index); // Volta para o slide atual se o movimento foi curto
+    }
+    isDragging = false;
+  }, { passive: true });
+
+  // Inicialização
+  resetTimer();
+}
 
 
 // ─── BUSCA DE PRODUTOS ──────────────────────────────────────────────────────
