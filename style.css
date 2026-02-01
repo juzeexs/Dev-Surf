@@ -1088,6 +1088,7 @@ body.menu-active {
     margin-right: 8px;    /* Espaço entre o antigo e o novo */
 }
 
+/* ===== BOTÃO ADICIONAR (APENAS TEXTO) ===== */
 .add-to-cart-btn {
     width: 100%;
     padding: 14px 20px;
@@ -1099,12 +1100,12 @@ body.menu-active {
     font-weight: 700;
     text-transform: uppercase;
     cursor: pointer;
-    transition: background 0.2s ease; /* Transição simples apenas para o hover do botão */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
+    transition: background 0.2s ease;
     margin-top: auto;
+    
+    /* Centralização simples para texto */
+    text-align: center;
+    display: block; 
 }
 
 .add-to-cart-btn:hover {
@@ -1112,12 +1113,20 @@ body.menu-active {
     border-color: #333;
 }
 
+
+
+.add-to-cart-btn:hover {
+    background-color: #333;
+    border-color: #333;
+}
+
+}
+
 /* Responsivo */
 @media (max-width: 768px) {
     .products-grid {
         grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     }
-}
 
 
 /* ===================================
