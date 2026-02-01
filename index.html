@@ -1,24 +1,437 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iframe</title>
+    <title>DevSurf - Loja de Surf</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <center>
-        <div>
-             <button onclick="carregasite(url)">Senai</button>
-             <button onclick="carregasite(url)">Google</button>
-             <button onclick="carregasite(url)">OpenIA</button>
+    <!-- HEADER -->
+    <header class="header" id="header">
+        <!-- Barra de Promoção -->
+        <div class="header-promo">
+            <div class="container">
+                <div class="promo-content">
+                    <p class="promo-text">
+                        <strong>FRETE GRÁTIS</strong> acima de R$ 299
+                        <span class="promo-divider">|</span>
+                        Parcele em até <strong>12x sem juros</strong>
+                    </p>
+                </div>
+            </div>
         </div>
-    </center>
-    <div class="container">
-        <iframe id="Meuiframe" src="https://www.senairs.org.br/unidades/senai-porto-alegre" frameborder="0"></iframe>
-        <iframe id="Meuiframe" src="https://www.google.com/?hl=pt-BR" frameborder="0"></iframe>
-        <iframe id="Meuiframe" src="https://openai.com/" frameborder="0"></iframe>
+
+        <!-- Navbar Principal -->
+        <nav class="navbar">
+            <div class="container">
+                <div class="navbar-content">
+                    <!-- Logo -->
+                    <a href="#home" class="logo">
+                        <h1>DEV<span>SURF</span></h1>
+                    </a>
+                    
+                    <!-- Menu de Navegação -->
+                    <ul class="nav-menu" id="navMenu">
+                        <li class="nav-item">
+                            <a href="#home" class="nav-link active">
+                                <span>Home</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#produtos" class="nav-link">
+                                <span>Produtos</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#marcas" class="nav-link">
+                                <span>Marcas</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#sobre" class="nav-link">
+                                <span>Sobre</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#contato" class="nav-link">
+                                <span>Contato</span>
+                            </a>
+                        </li>
+                    </ul>
+                    
+                    <!-- Ícones de Ação -->
+                    <div class="nav-actions">
+                        <!-- Carrinho -->
+                        <button class="action-btn cart-btn" id="cartBtn" aria-label="Abrir carrinho">
+                            <div class="cart-icon-wrapper">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="9" cy="21" r="1"></circle>
+                                    <circle cx="20" cy="21" r="1"></circle>
+                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                </svg>
+                                <span class="cart-badge" id="cartCount">0</span>
+                            </div>
+                            <span class="action-label">Carrinho</span>
+                        </button>
+                        
+                        <!-- Menu Hambúrguer (Mobile) -->
+                        <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+                            <span class="hamburger-line"></span>
+                            <span class="hamburger-line"></span>
+                            <span class="hamburger-line"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- CARROSSEL DE IMAGENS -->
+    <section class="image-carousel" id="imageCarousel">
+        <div class="carousel-track-container">
+            <div class="carousel-track">
+                <!-- Slide 1 -->
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=1200&h=600&fit=crop" 
+                         alt="Surfista pegando onda" 
+                         class="carousel-image">
+                </div>
+                
+                <!-- Slide 2 -->
+                <div class="carousel-slide">
+                    <img src="https://quiksilver.vtexassets.com/arquivos/ids/305580/Camiseta-Quiksilver-M-C-Banner-Preto-Preto-P.jpg?v=638828468032300000" 
+                         alt="Prancha de surf na praia" 
+                         class="carousel-image">
+                </div>
+                
+                <!-- Slide 3 -->
+                <div class="carousel-slide">
+                    <img src="https://quiksilver.vtexassets.com/arquivos/ids/410986/Mochila-Quiksilver-Esportiva-Quiksilver-H02-Preto-Preto-U.jpg?v=639051152736400000" 
+                         alt="Surfista na água" 
+                         class="carousel-image">
+                </div>
+                
+                <!-- Slide 4 -->
+                <div class="carousel-slide">
+                    <img src="https://hurley.com.br/cdn/shop/files/HYBM010356_MARINHO_02_2.jpg?v=1757339899" 
+                         alt="Onda perfeita" 
+                         class="carousel-image">
+                </div>
+                
+                <!-- Slide 5 -->
+                <div class="carousel-slide">
+                    <img src="https://img.bstn.com/eyJidWNrZXQiOiJic3RuLWltYWdlLXNlcnZlciIsImtleSI6ImNhdGFsb2cvcHJvZHVjdC8wb285MjA4LTcxMzgvMjAyMDA2MDQtcnlhbi1mZXJoYXQxMDE4Ny5qcGciLCJlZGl0cyI6eyJyZXNpemUiOnsiZml0IjoiY29udGFpbiIsIndpZHRoIjo1ODAsImhlaWdodCI6NzI1LCJiYWNrZ3JvdW5kIjp7InIiOjI1NSwiZyI6MjU1LCJiIjoyNTUsImFscGhhIjoxfX19fQ==" 
+                         alt="Pôr do sol na praia" 
+                         class="carousel-image">
+                </div>
+                
+                <!-- Slide 6 -->
+                <div class="carousel-slide">
+                    <img src="https://s.freesurf.com.br/product/2025/08/baby-look-moving-feminina-freesurf-squard.jpg" 
+                         alt="Vista aérea da praia" 
+                         class="carousel-image">
+                </div>
+            </div>
+        </div>
+        
+        <!-- Setas de Navegação -->
+        <button class="carousel-btn prev-btn" id="prevBtn" aria-label="Imagem anterior">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+        </button>
+        
+        <button class="carousel-btn next-btn" id="nextBtn" aria-label="Próxima imagem">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+        </button>
+        
+        <!-- Indicadores -->
+        <div class="carousel-dots">
+            <button class="dot active" aria-label="Ir para imagem 1"></button>
+            <button class="dot" aria-label="Ir para imagem 2"></button>
+            <button class="dot" aria-label="Ir para imagem 3"></button>
+            <button class="dot" aria-label="Ir para imagem 4"></button>
+            <button class="dot" aria-label="Ir para imagem 5"></button>
+            <button class="dot" aria-label="Ir para imagem 6"></button>
+        </div>
+    </section>
+
+    <!-- Barra de Marcas -->
+    <div class="header-promo">
+        <div class="container">
+            <div class="brands-marquee">
+                <div class="brands-track">
+                    <span class="brand-item">Quiksilver</span>
+                    <span class="brand-item">Hurley</span>
+                    <span class="brand-item">Oakley</span>
+                    <span class="brand-item">Billabong</span>
+                    <span class="brand-item">Rip Curl</span>
+                    <span class="brand-item">Volcom</span>
+                    <span class="brand-item">O'Neill</span>
+                    <span class="brand-item">Reef</span>
+                    <span class="brand-item">RVCA</span>
+                    <span class="brand-item">Vans</span>
+                    <!-- Duplicar para efeito contínuo -->
+                    <span class="brand-item">Quiksilver</span>
+                    <span class="brand-item">Hurley</span>
+                    <span class="brand-item">Oakley</span>
+                    <span class="brand-item">Billabong</span>
+                    <span class="brand-item">Rip Curl</span>
+                    <span class="brand-item">Volcom</span>
+                    <span class="brand-item">O'Neill</span>
+                    <span class="brand-item">Reef</span>
+                    <span class="brand-item">RVCA</span>
+                    <span class="brand-item">Vans</span>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <!-- Conteúdo Principal -->
+    <main style="padding: 4rem 0; background: var(--white-color);">
+        <div class="container">
+            <h2 style="text-align: center; font-family: 'Bebas Neue', sans-serif; font-size: 3rem; margin-bottom: 2rem;">Produtos em Destaque</h2>
+            <p style="text-align: center; color: var(--gray-color); max-width: 600px; margin: 0 auto; margin-bottom: 4rem;">Descubra nossa seleção premium de equipamentos e acessórios de surf das melhores marcas do mercado.</p>
+        </div>
+
+        <div class="search-container">
+            <div class="search-wrapper">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+                <input type="text" id="product-search" placeholder="Buscar produtos..." autocomplete="off">
+            </div>
+        </div>
+    </main>
+
+    <!-- SEÇÃO DE PRODUTOS -->
+    <section class="products-section" id="produtos">
+        <div class="container">
+            <div class="products-grid" id="productsGrid">
+                <!-- Os produtos serão inseridos aqui via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- SOBRE A DEVSURF -->
+    <section class="about-section" id="sobre">
+        <div class="container">
+            <div class="about-header">
+                <h2 class="section-title">Sobre a DevSurf</h2>
+            </div>
+            
+            <div class="about-content">
+                <!-- História -->
+                <div class="about-block">
+                    <div class="about-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                            <path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                        </svg>
+                    </div>
+                    <h3>Nossa História</h3>
+                    <p>Fundada em 2015 por surfistas apaixonados, a DevSurf nasceu do desejo de democratizar o acesso a equipamentos de surf de alta qualidade. Começamos como uma pequena loja em uma praia do litoral sul, atendendo a comunidade local de surfistas. Com o tempo, nossa dedicação ao esporte e compromisso com a excelência nos transformaram em referência nacional no segmento.</p>
+                    <p>Hoje, contamos com mais de 50 mil clientes ativos em todo o Brasil, mantendo o mesmo espírito que nos motivou no início: conectar pessoas às ondas e ao estilo de vida do surf.</p>
+                </div>
+
+                <!-- Avaliação de Mercado -->
+                <div class="about-block">
+                    <div class="about-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                    </div>
+                    <h3>Reconhecimento</h3>
+                    <p>Com mais de 15 mil avaliações positivas e nota média de 4.8 estrelas, a DevSurf é consistentemente classificada entre as 3 melhores lojas de surf online do Brasil. Nosso atendimento excepcional e curadoria cuidadosa de produtos nos renderam prêmios como "Loja do Ano" pela Associação Brasileira de Surf (2022 e 2023).</p>
+                    <p>Somos parceiros oficiais das principais marcas internacionais e patrocinadores de atletas profissionais, reforçando nosso compromisso com o desenvolvimento do surf brasileiro.</p>
+                </div>
+
+                <!-- Diferenciais -->
+                <div class="about-block">
+                    <div class="about-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Nossos Diferenciais</h3>
+                    <ul class="about-list">
+                        <li><strong>Autenticidade Garantida:</strong> 100% dos produtos são originais, com certificado de autenticidade.</li>
+                        <li><strong>Equipe Especializada:</strong> Surfistas experientes prontos para ajudar você a escolher o equipamento ideal.</li>
+                        <li><strong>Entrega Rápida:</strong> Enviamos para todo Brasil com prazos competitivos e rastreamento em tempo real.</li>
+                        <li><strong>Política de Troca Facilitada:</strong> Até 30 dias para trocar produtos sem complicação.</li>
+                        <li><strong>Sustentabilidade:</strong> Parceria com marcas eco-friendly e programa de reciclagem de equipamentos.</li>
+                        <li><strong>Comunidade Ativa:</strong> Eventos, campeonatos e conteúdo exclusivo para nossos clientes.</li>
+                    </ul>
+                </div>
+
+                <!-- Missão e Valores -->
+                <div class="about-block full-width">
+                    <div class="mission-values">
+                        <div class="mission-item">
+                            <h4>Missão</h4>
+                            <p>Proporcionar a melhor experiência de compra para surfistas de todos os níveis, oferecendo produtos de qualidade superior e inspirando mais pessoas a abraçarem o estilo de vida do surf.</p>
+                        </div>
+                        <div class="mission-item">
+                            <h4>Visão</h4>
+                            <p>Ser a principal referência em equipamentos de surf na América Latina, reconhecida pela excelência no atendimento, inovação e compromisso com a cultura do surf.</p>
+                        </div>
+                        <div class="mission-item">
+                            <h4>Valores</h4>
+                            <ul>
+                                <li>Paixão pelo surf e respeito ao oceano</li>
+                                <li>Autenticidade e transparência</li>
+                                <li>Inovação constante</li>
+                                <li>Compromisso com a sustentabilidade</li>
+                                <li>Comunidade e colaboração</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MARCAS PARCEIRAS -->
+    <section class="brands-section" id="marcas">
+        <div class="container">
+            <div class="brands-header">
+                <h2 class="section-title">Nossas Marcas Parceiras</h2>
+                <p class="section-subtitle">Trabalhamos com as melhores marcas do mundo do surf para oferecer produtos autênticos e de alta qualidade</p>
+            </div>
+            
+            <!-- Benefícios da Parceria -->
+            <div class="partnership-benefits">
+                <h3>Por que Comprar Marcas Parceiras na DevSurf?</h3>
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h4>100% Autêntico</h4>
+                        <p>Produtos originais com certificado de autenticidade e nota fiscal</p>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h4>Lançamentos Exclusivos</h4>
+                        <p>Acesso antecipado às novidades e edições limitadas</p>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                            </svg>
+                        </div>
+                        <h4>Garantia Estendida</h4>
+                        <p>Cobertura adicional e suporte técnico especializado</p>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h4>Melhores Preços</h4>
+                        <p>Condições especiais e descontos progressivos</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<footer class="devsurf-footer">
+    <div class="footer-container">
+        
+        <section class="footer-newsletter">
+            <div class="news-text">
+                <h3>Onde o Surf encontra o Dev</h3>
+                <p>Receba drops exclusivos e cupons de primeira compra.</p>
+            </div>
+            <form class="news-form">
+                <input type="email" placeholder="seuemail@gmail.com" required>
+                <button class= "submit"type="submit">OK</button>
+            </form>
+        </section>
+
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h2 class="logo-text">DEV<span>SURF</span></h2>
+                <p>Equipamentos de alta performance para surfistas que codam.</p>
+                <div class="social-icons">
+                    <a href="#"><i data-lucide="instagram"></i></a>
+                    <a href="#"><i data-lucide="youtube"></i></a>
+                    <a href="https://github.com/juzeexs"><i data-lucide="github"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h4>Equipamentos</h4>
+                <ul>
+                    <li><a href="#">Pranchas</a></li>
+                    <li><a href="#">Wetsuits</a></li>
+                    <li><a href="#">Acessórios</a></li>
+                    <li><a href="#">Drops de Inverno</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Suporte</h4>
+                <ul>
+                    <li><a href="#">Envio & Entrega</a></li>
+                    <li><a href="#">Trocas Grátis</a></li>
+                    <li><a href="#">Tabela de Medidas</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-contact">
+                <h4>Lineup</h4>
+                <p><i data-lucide="map-pin"></i> Praia do Rosa, SC</p>
+                <p><i data-lucide="mail"></i> devsurf@gmail.com</p>
+                <p><i data-lucide="phone"></i> (48) 99123-4567</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="copyright">
+                <p>&copy; 2026 DevSurf. Built with &lt;code&gt; and salt water.</p>
+                <span>CNPJ: 00.123.456/0001-99</span>
+            </div>
+            <div class="payment-badges">
+                <i data-lucide="credit-card"></i>
+                <i data-lucide="qr-code"></i>
+                <span>VISA / MASTER / PIX</span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop" aria-label="Voltar ao topo">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+
+    <!-- Script Principal -->
+    <script src="script.js"></script>
 
 </body>
 </html>
