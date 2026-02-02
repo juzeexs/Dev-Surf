@@ -2210,7 +2210,6 @@ body.menu-active {
         text-align: center; 
         gap: 30px; 
     }
-}
 
 @media (max-width: 500px) {
     .footer-grid { 

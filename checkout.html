@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finalizar Compra - DevSurf</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="checkout.css">
+</head>
+<body>
+  
+  <!-- Header Simplificado -->
+  <header class="checkout-header">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <span class="logo-dev">DEV</span><span class="logo-surf">SURF</span>
+      </a>
+      <div class="secure-badge">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+        Compra Segura
+      </div>
+    </div>
+  </header>
+  
+  <!-- Indicador de Progresso -->
+  <div class="progress-indicator">
+    <div class="container">
+      <div class="progress-bar">
+        <div class="progress-bar-fill"></div>
+      </div>
+      <div class="progress-steps">
+        <div class="progress-step active" data-step="1">
+          <div class="step-number">1</div>
+          <span class="step-label">Dados Pessoais</span>
+        </div>
+        <div class="progress-step" data-step="2">
+          <div class="step-number">2</div>
+          <span class="step-label">Endereço</span>
+        </div>
+        <div class="progress-step" data-step="3">
+          <div class="step-number">3</div>
+          <span class="step-label">Pagamento</span>
+        </div>
+        <div class="progress-step" data-step="4">
+          <div class="step-number">4</div>
+          <span class="step-label">Revisão</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Container Principal -->
+  <div class="checkout-wrapper">
+    <div class="container">
+      <div class="checkout-grid">
+        
+        <!-- Formulário de Checkout -->
+        <div class="checkout-container">
+          
+          <!-- STEP 1: Dados Pessoais -->
+          <div class="checkout-step active" data-step="1">
+            <h2 class="step-title">Dados Pessoais</h2>
+            <p class="step-subtitle">Precisamos de algumas informações para continuar</p>
+            
+            <div class="form-group">
+              <label for="customerName">Nome Completo *</label>
+              <input type="text" id="customerName" placeholder="Ex: João Silva Santos" required>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="customerEmail">E-mail *</label>
+                <input type="email" id="customerEmail" placeholder="seu@email.com" required>
+              </div>
+              <div class="form-group">
+                <label for="customerPhone">Telefone *</label>
+                <input type="tel" id="customerPhone" placeholder="(00) 00000-0000" required>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="customerCPF">CPF *</label>
+              <input type="text" id="customerCPF" placeholder="000.000.000-00" required>
+            </div>
+            
+            <div class="step-actions">
+              <a href="index.html" class="btn-secondary">Voltar para Loja</a>
+              <button type="button" class="btn-primary" id="nextStep1">
+                Continuar
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+          
+          <!-- STEP 2: Endereço -->
+          <div class="checkout-step" data-step="2">
+            <h2 class="step-title">Endereço de Entrega</h2>
+            <p class="step-subtitle">Para onde devemos enviar seu pedido?</p>
+            
+            <div class="form-group">
+              <label for="addressCEP">CEP *</label>
+              <input type="text" id="addressCEP" placeholder="00000-000" required>
+              <small>Digite seu CEP para buscar o endereço automaticamente</small>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group flex-3">
+                <label for="addressStreet">Endereço *</label>
+                <input type="text" id="addressStreet" placeholder="Rua, Avenida..." required>
+              </div>
+              <div class="form-group flex-1">
+                <label for="addressNumber">Número *</label>
+                <input type="text" id="addressNumber" placeholder="123" required>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="addressComplement">Complemento</label>
+              <input type="text" id="addressComplement" placeholder="Apt, Bloco, Casa...">
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="addressNeighborhood">Bairro *</label>
+                <input type="text" id="addressNeighborhood" required>
+              </div>
+              <div class="form-group">
+                <label for="addressCity">Cidade *</label>
+                <input type="text" id="addressCity" required>
+              </div>
+              <div class="form-group flex-1">
+                <label for="addressState">UF *</label>
+                <input type="text" id="addressState" maxlength="2" required>
+              </div>
+            </div>
+            
+            <!-- Opções de Frete -->
+            <div class="shipping-options">
+              <h3>Escolha o tipo de entrega</h3>
+              
+              <label class="shipping-option">
+                <input type="radio" name="shipping" value="standard" checked>
+                <div class="shipping-info">
+                  <div class="shipping-details">
+                    <strong>Entrega Padrão</strong>
+                    <span class="shipping-time">5-7 dias úteis</span>
+                  </div>
+                  <div class="shipping-price">R$ 15,90</div>
+                </div>
+              </label>
+              
+              <label class="shipping-option">
+                <input type="radio" name="shipping" value="express">
+                <div class="shipping-info">
+                  <div class="shipping-details">
+                    <strong>Entrega Expressa</strong>
+                    <span class="shipping-time">2-3 dias úteis</span>
+                  </div>
+                  <div class="shipping-price">R$ 29,90</div>
+                </div>
+              </label>
+            </div>
+            
+            <div class="step-actions">
+              <button type="button" class="btn-secondary" id="prevStep2">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="19" y1="12" x2="5" y2="12"></line>
+                  <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                Voltar
+              </button>
+              <button type="button" class="btn-primary" id="nextStep2">
+                Continuar
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+          
+          <!-- STEP 3: Pagamento -->
+          <div class="checkout-step" data-step="3">
+            <h2 class="step-title">Forma de Pagamento</h2>
+            <p class="step-subtitle">Escolha como deseja pagar</p>
+            
+            <div class="payment-methods">
+              <label class="payment-method">
+                <input type="radio" name="payment" value="credit" checked>
+                <div class="payment-info">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                    <line x1="1" y1="10" x2="23" y2="10"></line>
+                  </svg>
+                  <span>Cartão de Crédito</span>
+                </div>
+              </label>
+              
+              <label class="payment-method">
+                <input type="radio" name="payment" value="debit">
+                <div class="payment-info">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                    <line x1="1" y1="10" x2="23" y2="10"></line>
+                  </svg>
+                  <span>Cartão de Débito</span>
+                </div>
+              </label>
+              
+              <label class="payment-method">
+                <input type="radio" name="payment" value="pix">
+                <div class="payment-info">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 3L3 9v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V9l-9-6z"/>
+                  </svg>
+                  <span>PIX</span>
+                </div>
+              </label>
+              
+              <label class="payment-method">
+                <input type="radio" name="payment" value="boleto">
+                <div class="payment-info">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="9" y1="15" x2="15" y2="15"></line>
+                  </svg>
+                  <span>Boleto Bancário</span>
+                </div>
+              </label>
+            </div>
+            
+            <!-- Campos do Cartão -->
+            <div id="cardFields">
+              <div class="form-group">
+                <label for="cardNumber">Número do Cartão *</label>
+                <input type="text" id="cardNumber" placeholder="0000 0000 0000 0000" maxlength="19" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="cardName">Nome no Cartão *</label>
+                <input type="text" id="cardName" placeholder="Como está impresso no cartão" required>
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="cardExpiry">Validade *</label>
+                  <input type="text" id="cardExpiry" placeholder="MM/AA" maxlength="5" required>
+                </div>
+                <div class="form-group">
+                  <label for="cardCVV">CVV *</label>
+                  <input type="text" id="cardCVV" placeholder="000" maxlength="4" required>
+                </div>
+              </div>
+              
+              <div class="form-group" id="installmentsField">
+                <label for="installments">Parcelas</label>
+                <select id="installments">
+                  <option value="1">1x sem juros</option>
+                  <option value="2">2x sem juros</option>
+                  <option value="3">3x sem juros</option>
+                  <option value="4">4x sem juros</option>
+                  <option value="5">5x sem juros</option>
+                  <option value="6">6x sem juros</option>
+                  <option value="7">7x sem juros</option>
+                  <option value="8">8x sem juros</option>
+                  <option value="9">9x sem juros</option>
+                  <option value="10">10x sem juros</option>
+                  <option value="11">11x sem juros</option>
+                  <option value="12">12x sem juros</option>
+                </select>
+              </div>
+            </div>
+            
+            <!-- Info PIX -->
+            <div id="pixInfo" style="display: none;">
+              <div class="info-box">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 3L3 9v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V9l-9-6z"/>
+                </svg>
+                <h3>Pagamento via PIX</h3>
+                <p>Após finalizar o pedido, você receberá um QR Code e o código PIX Copia e Cola para realizar o pagamento.</p>
+                <p><strong>O pagamento é confirmado em segundos!</strong></p>
+              </div>
+            </div>
+            
+            <!-- Info Boleto -->
+            <div id="boletoInfo" style="display: none;">
+              <div class="info-box">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="9" y1="15" x2="15" y2="15"></line>
+                </svg>
+                <h3>Boleto Bancário</h3>
+                <p>Após finalizar o pedido, o boleto será gerado e enviado para seu e-mail.</p>
+                <p><strong>Prazo de vencimento:</strong> 3 dias úteis</p>
+              </div>
+            </div>
+            
+            <div class="step-actions">
+              <button type="button" class="btn-secondary" id="prevStep3">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="19" y1="12" x2="5" y2="12"></line>
+                  <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                Voltar
+              </button>
+              <button type="button" class="btn-primary" id="nextStep3">
+                Continuar
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+          
+          <!-- STEP 4: Revisão -->
+          <div class="checkout-step" data-step="4">
+            <h2 class="step-title">Revisão do Pedido</h2>
+            <p class="step-subtitle">Confira todos os dados antes de finalizar</p>
+            
+            <div class="review-section">
+              <h3>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                Dados Pessoais
+              </h3>
+              <div class="review-content">
+                <p><strong>Nome:</strong> <span id="reviewName"></span></p>
+                <p><strong>E-mail:</strong> <span id="reviewEmail"></span></p>
+                <p><strong>Telefone:</strong> <span id="reviewPhone"></span></p>
+                <p><strong>CPF:</strong> <span id="reviewCPF"></span></p>
+              </div>
+            </div>
+            
+            <div class="review-section">
+              <h3>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                  <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+                Endereço de Entrega
+              </h3>
+              <div class="review-content">
+                <p id="reviewAddress"></p>
+              </div>
+            </div>
+            
+            <div class="review-section">
+              <h3>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                Entrega
+              </h3>
+              <div class="review-content">
+                <p id="reviewShipping"></p>
+              </div>
+            </div>
+            
+            <div class="review-section">
+              <h3>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                  <line x1="1" y1="10" x2="23" y2="10"></line>
+                </svg>
+                Forma de Pagamento
+              </h3>
+              <div class="review-content">
+                <p id="reviewPayment"></p>
+              </div>
+            </div>
+            
+            <div class="terms-checkbox">
+              <label>
+                <input type="checkbox" id="acceptTerms" required>
+                <span>Li e aceito os <a href="#" target="_blank">termos de uso</a> e <a href="#" target="_blank">política de privacidade</a></span>
+              </label>
+            </div>
+            
+            <div class="step-actions">
+              <button type="button" class="btn-secondary" id="prevStep4">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="19" y1="12" x2="5" y2="12"></line>
+                  <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                Voltar
+              </button>
+              <button type="button" class="btn-primary btn-finish" id="finishOrderBtn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                Finalizar Pedido
+              </button>
+            </div>
+          </div>
+          
+        </div>
+        
+        <!-- Resumo do Pedido -->
+        <div class="order-summary">
+          <h3 class="summary-title">Resumo do Pedido</h3>
+          
+          <div class="summary-items" id="summaryItems"></div>
+          
+          <div class="summary-totals">
+            <div class="summary-row">
+              <span>Subtotal:</span>
+              <span id="summarySubtotal">R$ 0,00</span>
+            </div>
+            <div class="summary-row">
+              <span>Frete:</span>
+              <span id="summaryShipping">A calcular</span>
+            </div>
+            <div class="summary-row summary-total">
+              <span>Total:</span>
+              <span id="summaryTotal">R$ 0,00</span>
+            </div>
+          </div>
+          
+          <div class="trust-badges">
+            <div class="badge">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+              <span>Compra 100% Segura</span>
+            </div>
+            <div class="badge">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <span>Frete para Todo Brasil</span>
+            </div>
+            <div class="badge">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="16 12 12 8 8 12"></polyline>
+                <line x1="12" y1="16" x2="12" y2="8"></line>
+              </svg>
+              <span>Troca Grátis em 30 dias</span>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+
+    <!-- ============================================
+         FOOTER
+         ============================================ -->
+    <footer class="devsurf-footer" id="contato">
+        <div class="footer-container">
+            
+            <!-- Newsletter -->
+            <section class="footer-newsletter">
+                <div class="news-text">
+                    <h3>Onde o Surf encontra o Dev</h3>
+                    <p>Receba drops exclusivos e cupons de primeira compra.</p>
+                </div>
+                <form class="news-form">
+                    <input type="email" placeholder="seu@email.com" required>
+                    <button type="submit" class="submit">OK</button>
+                </form>
+            </section>
+
+            <!-- Grid do Footer -->
+            <div class="footer-grid">
+                
+                <!-- Coluna 1: Marca -->
+                <div class="footer-brand">
+                    <h2 class="logo-text">DEV<span>SURF</span></h2>
+                    <p>Equipamentos de alta performance para surfistas que codam.</p>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Instagram">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="YouTube">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+                                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+                            </svg>
+                        </a>
+                        <a href="https://github.com/juzeexs" aria-label="GitHub">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Coluna 2: Equipamentos -->
+                <div class="footer-links">
+                    <h4>Equipamentos</h4>
+                    <ul>
+                        <li><a href="#produtos">Pranchas</a></li>
+                        <li><a href="#produtos">Wetsuits</a></li>
+                        <li><a href="#produtos">Acessórios</a></li>
+                        <li><a href="#produtos">Drops de Inverno</a></li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 3: Suporte -->
+                <div class="footer-links">
+                    <h4>Suporte</h4>
+                    <ul>
+                        <li><a href="#sobre">Envio & Entrega</a></li>
+                        <li><a href="#sobre">Trocas Grátis</a></li>
+                        <li><a href="#sobre">Tabela de Medidas</a></li>
+                        <li><a href="#sobre">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 4: Contato -->
+                <div class="footer-contact">
+                    <h4>Lineup</h4>
+                    <p>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        Praia do Rosa, SC
+                    </p>
+                    <p>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        aloha@devsurf.com
+                    </p>
+                    <p>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                        (48) 99123-4567
+                    </p>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <div class="copyright">
+                    <p>&copy; 2026 DevSurf. Built with &lt;code&gt; and salt water.</p>
+                    <span>CNPJ: 00.123.456/0001-99</span>
+                </div>
+                <div class="payment-badges">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                        <line x1="1" y1="10" x2="23" y2="10"></line>
+                    </svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                        <path d="M7 7h.01M7 12h.01M7 17h.01M12 7h.01M12 12h.01M12 17h.01M17 7h.01M17 12h.01M17 17h.01"></path>
+                    </svg>
+                    <span>VISA / MASTER / PIX</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+  
+  <script src="checkout.js"></script>
+</body>
+</html>

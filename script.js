@@ -1117,9 +1117,9 @@ function injectCartHTML() {
             <span id="cartTotal">R$ 0,00</span>
           </div>
         </div>
-        <button class="checkout-btn" onclick="showToast('Checkout em desenvolvimento! 🚀')">
-          Finalizar Compra
-        </button>
+        <a href="checkout.html" class="checkout-btn" style="text-decoration: none; display: inline-block; text-align: center;">
+  Continuar
+</a>
       </div>
     </div>
   `;
