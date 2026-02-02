@@ -532,6 +532,22 @@ body {
   color: #000000;
 }
 
+/* Badge de Frete Grátis */
+#freeShippingBadge {
+  animation: slideInDown 0.5s ease-out;
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .summary-items {
   margin-bottom: 1.5rem;
   max-height: 400px;

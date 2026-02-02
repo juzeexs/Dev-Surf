@@ -1460,7 +1460,6 @@ body.menu-active {
     background: white;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     border: 1px solid #e0e0e0;
     display: flex;
     flex-direction: column;
@@ -2027,8 +2026,6 @@ body.menu-active {
     color: var(--text-main);
     font-family: 'Inter', -apple-system, sans-serif;
     padding: 80px 0 40px 0;
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
 }
 
 .footer-container {
