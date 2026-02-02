@@ -1,10 +1,3 @@
-// ============================================
-// DEVSURF E-COMMERCE - SCRIPT PRINCIPAL
-// ============================================
-
-// ─────────────────────────────────────────────
-// BANCO DE DADOS DE PRODUTOS
-// ─────────────────────────────────────────────
 const PRODUCTS = {
   1:  { brand:"QUIKSILVER",  name:"Camiseta Comp Logo (Branca)",          price:129.90, image:"https://quiksilver.vtexassets.com/arquivos/ids/402169/Camiseta-Quiksilver-M-C-Comp-Logo-Branco-Branco-P.jpg?v=639015714281370000", description:"Camiseta com estampa frontal, confeccionada em malha 100% algodão.", tags:["camiseta","branca","algodão","básica"] },
   2:  { brand:"HURLEY",      name:"Bermuda Phantom Marinho",              price:299.90, oldPrice:359.90, image:"https://hurley.com.br/cdn/shop/files/HYBM010356_MARINHO_02_2.jpg?v=1757339899", description:"Bermuda de alta performance com secagem rápida, ideal para surf e lazer.", tags:["bermuda","surf","marinho","performance"] },
@@ -424,8 +417,6 @@ function initCarousel() {
 
   let index = 0;
   let autoplayInterval;
-  let isDragging = false;
-  let startX = 0;
 
   // Ir para slide específico
   const goToSlide = (newIndex) => {
@@ -462,39 +453,6 @@ function initCarousel() {
   dots.forEach((dot, i) => {
     dot.addEventListener('click', () => goToSlide(i));
   });
-
-  // Suporte a touch/swipe (mobile)
-  track.addEventListener('touchstart', (e) => {
-    startX = e.touches[0].clientX;
-    isDragging = true;
-    clearInterval(autoplayInterval);
-  }, { passive: true });
-
-  track.addEventListener('touchmove', (e) => {
-    if (!isDragging) return;
-    const currentX = e.touches[0].clientX;
-    const diff = startX - currentX;
-    
-    if (Math.abs(diff) > 10) {
-      track.style.transition = 'none';
-      track.style.transform = `translateX(calc(-${index * 100}% - ${diff}px))`;
-    }
-  }, { passive: true });
-
-  track.addEventListener('touchend', (e) => {
-    if (!isDragging) return;
-    
-    const endX = e.changedTouches[0].clientX;
-    const diff = startX - endX;
-
-    if (Math.abs(diff) > 50) {
-      diff > 0 ? goToSlide(index + 1) : goToSlide(index - 1);
-    } else {
-      goToSlide(index);
-    }
-    
-    isDragging = false;
-  }, { passive: true });
 
   // Iniciar autoplay
   startAutoplay();
