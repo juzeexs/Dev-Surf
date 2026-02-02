@@ -825,9 +825,12 @@ body {
   font-size: clamp(0.9rem, 2vw, 0.95rem);
 }
 
+
 .pix-qrcode {
-  width: clamp(200px, 50vw, 250px);
-  height: clamp(200px, 50vw, 250px);
+  width: 100%; 
+  max-width: 250px;
+  aspect-ratio: 1 / 1;
+  height: auto; 
   background: #fff;
   margin: 1.5rem auto;
   border-radius: 12px;
@@ -835,7 +838,15 @@ body {
   align-items: center;
   justify-content: center;
   padding: 1rem;
+  box-sizing: border-box;
 }
+
+.pix-qrcode img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
 
 .pix-code-box {
   background: rgba(255, 255, 255, 0.1);
@@ -865,6 +876,7 @@ body {
   gap: 0.5rem;
   font-size: clamp(0.9rem, 2vw, 0.95rem);
   transition: all 0.2s;
+  margin-top: 10px;
 }
 
 .copy-pix-btn:hover {
