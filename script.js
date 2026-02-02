@@ -317,9 +317,20 @@ function showToast(message) {
   const toast = document.createElement('div');
   toast.className = 'devsurf-toast';
   toast.innerHTML = `
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-    </svg>
+<svg 
+  xmlns="http://www.w3.org/2000/svg" 
+  fill="none" 
+  viewBox="0 0 24 24" 
+  stroke="white" 
+  style="width: 24px; height: 24px;"
+>
+  <path 
+    stroke-linecap="round" 
+    stroke-linejoin="round" 
+    stroke-width="2" 
+    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+  />
+</svg>
     <span>${message}</span>
   `;
   
@@ -1074,7 +1085,7 @@ function injectCartHTML() {
     <!-- Drawer do Carrinho -->
     <div id="cartDrawer">
       <div class="cart-header">
-        <h2>MEU CARRINHO</h2>
+        <h2>SEU CARRINHO</h2>
         <button class="close-cart-btn" id="closeCartBtn" aria-label="Fechar carrinho">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="18" y1="6" x2="6" y2="18"></line>
