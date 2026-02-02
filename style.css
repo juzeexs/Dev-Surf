@@ -406,133 +406,385 @@ button {
 /* --------------------------------------------
    CARRINHO LATERAL
    -------------------------------------------- */
-
-/* Overlay - Escurece o fundo quando o carrinho abre */
+/* Overlay do Carrinho */
+/* Overlay do Carrinho */
 #cartOverlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(4px);
   z-index: 999;
-  display: none;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 #cartOverlay.active {
-  display: block;
   opacity: 1;
+  visibility: visible;
 }
 
 /* Drawer do Carrinho */
 #cartDrawer {
   position: fixed;
   top: 0;
-  right: calc(var(--cart-width) * -1); /* Escondido à direita */
-  width: var(--cart-width);
+  right: 0;
+  width: var(--cart-width, 380px);
+  max-width: 100%;
   height: 100vh;
-  background: var(--bg-card);
+  height: 100dvh;
+  background: var(--bg-card, #ffffff);
   box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
   z-index: 1000;
-  transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
+  will-change: transform;
 }
 
 #cartDrawer.active {
-  right: 0; /* Desliza para dentro */
+  transform: translateX(0);
 }
 
-/* Ajuste para Mobile */
+/* Responsividade */
+@media (max-width: 768px) {
+  #cartDrawer {
+    --cart-width: 85%;
+  }
+}
+
 @media (max-width: 480px) {
-  :root { --cart-width: 100%; }
+  #cartDrawer {
+    --cart-width: 100%;
+  }
 }
 
-/* Cabeçalho do Carrinho */
+/* Cabeçalho Compacto */
 .cart-header {
-  padding: 1.5rem;
-  border-bottom: 1px solid var(--border-color);
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border-color, #e5e7eb);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-shrink: 0;
 }
 
-/* Listagem de Itens com Scroll Interno */
+.cart-header h2 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.cart-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: background 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.cart-close:hover {
+  background: #f3f4f6;
+}
+
+/* Listagem de Itens Otimizada */
 #cartItems {
   flex: 1;
-  overflow-y: auto; /* Impede que o carrinho 'vaze' para baixo */
-  padding: 1rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0.5rem 1rem;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
 }
 
+#cartItems::-webkit-scrollbar {
+  width: 5px;
+}
+
+#cartItems::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#cartItems::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+/* Item do Carrinho - COMPACTO */
 .cart-item {
   display: grid;
-  grid-template-columns: 80px 1fr auto;
-  gap: 1rem;
-  padding: 1rem 0;
-  border-bottom: 1px solid var(--border-color);
+  grid-template-columns: 50px 1fr auto;
+  gap: 0.75rem;
+  padding: 0.625rem 0;
+  border-bottom: 1px solid var(--border-color, #e5e7eb);
   align-items: center;
 }
 
-.cart-item img {
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
-  border-radius: 8px;
+.cart-item:last-child {
+  border-bottom: none;
 }
 
-/* Controles de Quantidade */
+/* Imagem Miniatura */
+.cart-item img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 6px;
+  background: #f3f4f6;
+  flex-shrink: 0;
+}
+
+/* Informações do Item - Compactas */
+.cart-item-info {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.cart-item-info h4 {
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1.3;
+}
+
+.cart-item-price {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--primary-color, #3b82f6);
+  margin: 0;
+}
+
+.cart-item-variant {
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* Área de Ações - Compacta */
+.cart-item-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+/* Controles de Quantidade - MINI */
 .qty-control {
   display: flex;
   align-items: center;
   background: #f3f4f6;
-  border-radius: 20px;
-  padding: 2px;
+  border-radius: 16px;
+  padding: 1px;
+  gap: 2px;
 }
 
 .qty-btn {
   border: none;
   background: none;
-  width: 28px;
-  height: 28px;
+  width: 22px;
+  height: 22px;
+  min-width: 22px;
+  min-height: 22px;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 600;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+  color: #374151;
 }
 
-/* Rodapé Fixo no final do Drawer */
+.qty-btn:active {
+  background: #e5e7eb;
+}
+
+.qty-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.qty-display {
+  min-width: 24px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.8125rem;
+  color: #111827;
+}
+
+/* Botão Remover - Compacto */
+.remove-btn {
+  background: none;
+  border: none;
+  color: #ef4444;
+  font-size: 0.75rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  transition: background 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.remove-btn:hover {
+  background: #fee2e2;
+}
+
+/* Rodapé Compacto */
 #cartFooter {
-  padding: 1.5rem;
+  padding: 1rem 1.25rem;
   background: #f9fafb;
-  border-top: 1px solid var(--border-color);
+  border-top: 1px solid var(--border-color, #e5e7eb);
+  flex-shrink: 0;
+}
+
+/* Resumo de Totais - Compacto */
+.cart-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.875rem;
+  color: #6b7280;
 }
 
 .total-row {
   display: flex;
   justify-content: space-between;
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
+  align-items: center;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #111827;
+  padding-top: 0.75rem;
+  border-top: 1px solid #e5e7eb;
 }
 
+/* Botão de Finalizar - Compacto */
 .checkout-btn {
   width: 100%;
-  padding: 1rem;
-  background: var(--primary-color);
+  padding: 0.875rem;
+  background: var(--primary-color, #3b82f6);
   color: white;
   border: none;
   border-radius: 8px;
   font-weight: 600;
+  font-size: 0.9375rem;
   cursor: pointer;
-  transition: filter 0.2s;
+  transition: filter 0.2s ease, transform 0.1s ease;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .checkout-btn:hover {
-  filter: brightness(0.9);
+  filter: brightness(0.95);
 }
 
+.checkout-btn:active {
+  transform: scale(0.98);
+}
 
+/* Estado Vazio */
+.cart-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  text-align: center;
+  color: #6b7280;
+  height: 100%;
+}
+
+.cart-empty-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+.cart-empty p {
+  margin: 0;
+  font-size: 0.9375rem;
+}
+
+/* Contador de Itens no Header */
+.cart-count {
+  background: var(--primary-color, #3b82f6);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.125rem 0.5rem;
+  border-radius: 12px;
+  margin-left: 0.5rem;
+}
+
+/* Otimizações Mobile */
+@media (max-width: 480px) {
+  .cart-item {
+    grid-template-columns: 45px 1fr auto;
+    gap: 0.625rem;
+    padding: 0.5rem 0;
+  }
+  
+  .cart-item img {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .cart-item-info h4 {
+    font-size: 0.8125rem;
+  }
+  
+  .qty-btn {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    min-height: 20px;
+    font-size: 0.8125rem;
+  }
+  
+  .qty-display {
+    min-width: 22px;
+    font-size: 0.75rem;
+  }
+}
+
+/* Performance - Reduzir animações */
+@media (prefers-reduced-motion: reduce) {
+  #cartOverlay,
+  #cartDrawer,
+  .checkout-btn,
+  .qty-btn,
+  .remove-btn {
+    transition: none;
+  }
+}
+
+/* Ajustes para telas grandes */
+@media (min-width: 1440px) {
+  #cartDrawer {
+    --cart-width: 420px;
+  }
+}
 /* --------------------------------------------
    MENU HAMBÚRGUER (Mobile)
    -------------------------------------------- */
