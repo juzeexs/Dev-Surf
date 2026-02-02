@@ -318,6 +318,7 @@ function showToast(message) {
   }, 3000);
 }
 
+
 // ─────────────────────────────────────────────
 // HEADER COM SCROLL
 // ─────────────────────────────────────────────
@@ -346,6 +347,17 @@ function initHeader() {
     
     lastScroll = currentScroll;
   });
+}
+
+// Exemplo de como você deve estar ativando:
+function openSearch() {
+    document.querySelector('.search-overlay').classList.add('active');
+    document.body.style.overflow = 'hidden'; // Impede a página de rolar atrás do input
+}
+
+function closeSearch() {
+    document.querySelector('.search-overlay').classList.remove('active');
+    document.body.style.overflow = 'auto'; // Devolve o scroll
 }
 
 // ─────────────────────────────────────────────

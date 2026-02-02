@@ -206,6 +206,8 @@ button {
     -webkit-text-stroke: 0.1px var(--dark-color);
 }
 
+
+
 /* --------------------------------------------
    BUSCA DE PRODUTOS
    -------------------------------------------- */
@@ -488,14 +490,17 @@ body.cart-open {
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
+    width: 100vw; /* Garante largura total */
+    height: 100vh; /* Garante altura total */
     background: rgba(15, 23, 42, 0.96);
     backdrop-filter: blur(10px);
     z-index: 2000;
+    
+    /* Centralização Mágica */
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: center;      /* Centraliza verticalmente */
+    justify-content: center;   /* Centraliza horizontalmente */
+    
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -544,6 +549,7 @@ body.cart-open {
 .search-input-wrapper {
     position: relative;
     margin-bottom: 2rem;
+    align-items: center;
 }
 
 .search-wrapper {
@@ -770,9 +776,15 @@ body.cart-open {
     }
     
     /* Search mobile */
-    .search-container {
-        width: 95%;
-    }
+.search-container {
+    width: 90%;
+    max-width: 600px; /* Reduzi um pouco para ficar mais elegante no centro */
+    margin: 0 auto;   /* Margem automática para segurança */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
     
     .search-input {
         font-size: 1rem;
