@@ -1,3 +1,10 @@
+// ============================================
+// DEVSURF E-COMMERCE - SCRIPT PRINCIPAL
+// ============================================
+
+// ─────────────────────────────────────────────
+// BANCO DE DADOS DE PRODUTOS
+// ─────────────────────────────────────────────
 const PRODUCTS = {
   1:  { brand:"QUIKSILVER",  name:"Camiseta Comp Logo (Branca)",          price:129.90, image:"https://quiksilver.vtexassets.com/arquivos/ids/402169/Camiseta-Quiksilver-M-C-Comp-Logo-Branco-Branco-P.jpg?v=639015714281370000", description:"Camiseta com estampa frontal, confeccionada em malha 100% algodão.", tags:["camiseta","branca","algodão","básica"] },
   2:  { brand:"HURLEY",      name:"Bermuda Phantom Marinho",              price:299.90, oldPrice:359.90, image:"https://hurley.com.br/cdn/shop/files/HYBM010356_MARINHO_02_2.jpg?v=1757339899", description:"Bermuda de alta performance com secagem rápida, ideal para surf e lazer.", tags:["bermuda","surf","marinho","performance"] },
@@ -116,6 +123,8 @@ function addToCart(productId) {
   const id = parseInt(productId);
   const product = PRODUCTS[id];
   
+  console.log('Adicionando produto:', id, product);
+  
   if (!product) {
     console.error('Produto não encontrado:', id);
     return;
@@ -125,9 +134,13 @@ function addToCart(productId) {
   
   if (existing) {
     existing.qty++;
+    console.log('Produto já existe, incrementando quantidade:', existing);
   } else {
     cart.push({ id, ...product, qty: 1 });
+    console.log('Novo produto adicionado ao carrinho');
   }
+  
+  console.log('Carrinho atual:', cart);
   
   updateCartCount();
   saveCart();
@@ -267,11 +280,19 @@ function openCart() {
   const drawer = $('#cartDrawer');
   const overlay = $('#cartOverlay');
   
+  console.log('Abrindo carrinho...');
+  console.log('Drawer encontrado:', drawer);
+  console.log('Overlay encontrado:', overlay);
+  console.log('Itens no carrinho:', cart.length);
+  
   if (drawer && overlay) {
     renderCart();
     drawer.classList.add('active');
     overlay.classList.add('active');
     document.body.classList.add('cart-open');
+    console.log('Carrinho aberto com sucesso!');
+  } else {
+    console.error('Elementos do carrinho não encontrados!');
   }
 }
 
@@ -311,7 +332,6 @@ function showToast(message) {
   }, 3000);
 }
 
-
 // ─────────────────────────────────────────────
 // HEADER COM SCROLL
 // ─────────────────────────────────────────────
@@ -340,17 +360,6 @@ function initHeader() {
     
     lastScroll = currentScroll;
   });
-}
-
-// Exemplo de como você deve estar ativando:
-function openSearch() {
-    document.querySelector('.search-overlay').classList.add('active');
-    document.body.style.overflow = 'hidden'; // Impede a página de rolar atrás do input
-}
-
-function closeSearch() {
-    document.querySelector('.search-overlay').classList.remove('active');
-    document.body.style.overflow = 'auto'; // Devolve o scroll
 }
 
 // ─────────────────────────────────────────────
@@ -403,9 +412,6 @@ function initMobileMenu() {
   });
 }
 
-// ─────────────────────────────────────────────
-// CARROSSEL DE IMAGENS
-// ─────────────────────────────────────────────
 function initCarousel() {
   const track = $('.carousel-track');
   const slides = Array.from($$('.carousel-slide'));
@@ -857,7 +863,14 @@ function injectStyles() {
 // INJETAR HTML DO CARRINHO
 // ─────────────────────────────────────────────
 function injectCartHTML() {
+  // Verifica se já existe para não duplicar
+  if ($('#cartDrawer')) return;
+  
   const html = `
+    <!-- Overlay do Carrinho -->
+    <div id="cartOverlay"></div>
+    
+    <!-- Drawer do Carrinho -->
     <div id="cartDrawer">
       <div class="cart-header">
         <h2>MEU CARRINHO</h2>
@@ -902,8 +915,16 @@ function injectCartHTML() {
   document.body.insertAdjacentHTML('beforeend', html);
   
   // Event listeners do carrinho
-  $('#cartOverlay')?.addEventListener('click', closeCart);
-  $('#closeCartBtn')?.addEventListener('click', closeCart);
+  const overlay = $('#cartOverlay');
+  const closeBtn = $('#closeCartBtn');
+  
+  if (overlay) {
+    overlay.addEventListener('click', closeCart);
+  }
+  
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeCart);
+  }
 }
 
 // ─────────────────────────────────────────────
@@ -914,10 +935,22 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Carregar carrinho salvo
   loadCart();
+  console.log('Carrinho carregado:', cart);
   
   // Injetar estilos e HTML do carrinho
   injectStyles();
+  console.log('Estilos injetados');
+  
   injectCartHTML();
+  console.log('HTML do carrinho injetado');
+  
+  // Verificar se elementos foram criados
+  console.log('Verificando elementos do carrinho:');
+  console.log('- cartDrawer:', $('#cartDrawer'));
+  console.log('- cartOverlay:', $('#cartOverlay'));
+  console.log('- cartItems:', $('#cartItems'));
+  console.log('- cartEmpty:', $('#cartEmpty'));
+  console.log('- cartFooter:', $('#cartFooter'));
   
   // Inicializar componentes
   initHeader();
@@ -929,9 +962,20 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Renderizar produtos
   renderProducts();
+  console.log('Produtos renderizados');
   
   // Botão abrir carrinho
-  $('#cartBtn')?.addEventListener('click', openCart);
+  const cartBtn = $('#cartBtn');
+  console.log('Botão do carrinho:', cartBtn);
+  
+  if (cartBtn) {
+    cartBtn.addEventListener('click', () => {
+      console.log('Botão do carrinho clicado!');
+      openCart();
+    });
+  } else {
+    console.error('Botão do carrinho não encontrado!');
+  }
   
   console.log('✅ DevSurf - E-commerce carregado com sucesso!');
 });
