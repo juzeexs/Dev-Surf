@@ -426,8 +426,6 @@ function initCarousel() {
 
   let index = 0;
   let autoplayInterval;
-  let isDragging = false;
-  let startX = 0;
 
   // Ir para slide específico
   const goToSlide = (newIndex) => {
@@ -464,39 +462,6 @@ function initCarousel() {
   dots.forEach((dot, i) => {
     dot.addEventListener('click', () => goToSlide(i));
   });
-
-  // Suporte a touch/swipe (mobile)
-  track.addEventListener('touchstart', (e) => {
-    startX = e.touches[0].clientX;
-    isDragging = true;
-    clearInterval(autoplayInterval);
-  }, { passive: true });
-
-  track.addEventListener('touchmove', (e) => {
-    if (!isDragging) return;
-    const currentX = e.touches[0].clientX;
-    const diff = startX - currentX;
-    
-    if (Math.abs(diff) > 10) {
-      track.style.transition = 'none';
-      track.style.transform = `translateX(calc(-${index * 100}% - ${diff}px))`;
-    }
-  }, { passive: true });
-
-  track.addEventListener('touchend', (e) => {
-    if (!isDragging) return;
-    
-    const endX = e.changedTouches[0].clientX;
-    const diff = startX - endX;
-
-    if (Math.abs(diff) > 50) {
-      diff > 0 ? goToSlide(index + 1) : goToSlide(index - 1);
-    } else {
-      goToSlide(index);
-    }
-    
-    isDragging = false;
-  }, { passive: true });
 
   // Iniciar autoplay
   startAutoplay();
@@ -616,7 +581,7 @@ function injectStyles() {
       bottom: 30px;
       right: 30px;
       background: #000;
-      color: #fff;
+      color: white;
       padding: 16px 24px;
       border-radius: 12px;
       display: flex;
@@ -624,7 +589,6 @@ function injectStyles() {
       gap: 12px;
       font-size: 0.9rem;
       font-weight: 600;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
       z-index: 10000;
       opacity: 0;
       transform: translateY(20px);

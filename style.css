@@ -498,13 +498,12 @@ button {
 
 /* Listagem de Itens Otimizada */
 #cartItems {
-  flex: 1;
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding: 0.5rem 1rem;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior: contain;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Aumente aqui para desgrudar os cards */
+  padding-bottom: 20px;
 }
+
 
 #cartItems::-webkit-scrollbar {
   width: 5px;
@@ -527,6 +526,10 @@ button {
   padding: 0.625rem 0;
   border-bottom: 1px solid var(--border-color, #e5e7eb);
   align-items: center;
+  /* ... outras propriedades ... */
+  padding: 16px; /* Aumentado de 12px para 16px */
+  margin-bottom: 6px; /* Opcional: uma leve margem de segurança */
+
 }
 
 .cart-item:last-child {
