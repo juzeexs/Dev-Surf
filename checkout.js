@@ -15,7 +15,7 @@ let checkoutData = {
     state: ''
   },
   payment: {
-    method: 'credit', // credit, debit, pix, boleto
+    method: 'credit',
     installments: 1,
     cardNumber: '',
     cardName: '',
@@ -23,7 +23,7 @@ let checkoutData = {
     cardCvv: ''
   },
   shipping: {
-    method: 'standard', // standard, express
+    method: 'standard',
     price: 0
   }
 };
@@ -361,7 +361,6 @@ function validatePersonalData() {
   if (!isValid) {
     showToast(errors[0], 'error');
   } else {
-    // Salvar dados
     checkoutData.customer = { name, email, phone, cpf };
   }
   
@@ -433,7 +432,6 @@ function validateAddressData() {
   if (!isValid) {
     showToast(errors[0], 'error');
   } else {
-    // Salvar dados
     checkoutData.address = {
       cep,
       street,
@@ -503,7 +501,6 @@ function validatePaymentData() {
   if (!isValid) {
     showToast(errors[0], 'error');
   } else {
-    // Salvar dados
     checkoutData.payment.cardNumber = cardNumber;
     checkoutData.payment.cardName = cardName;
     checkoutData.payment.cardExpiry = cardExpiry;
@@ -558,22 +555,33 @@ function renderPaymentOptions() {
 // ─────────────────────────────────────────────
 function renderReview() {
   // Dados pessoais
-  $('#reviewName').textContent = checkoutData.customer.name;
-  $('#reviewEmail').textContent = checkoutData.customer.email;
-  $('#reviewPhone').textContent = checkoutData.customer.phone;
-  $('#reviewCPF').textContent = checkoutData.customer.cpf;
+  const reviewName = $('#reviewName');
+  const reviewEmail = $('#reviewEmail');
+  const reviewPhone = $('#reviewPhone');
+  const reviewCPF = $('#reviewCPF');
+  
+  if (reviewName) reviewName.textContent = checkoutData.customer.name;
+  if (reviewEmail) reviewEmail.textContent = checkoutData.customer.email;
+  if (reviewPhone) reviewPhone.textContent = checkoutData.customer.phone;
+  if (reviewCPF) reviewCPF.textContent = checkoutData.customer.cpf;
   
   // Endereço
   const addr = checkoutData.address;
-  $('#reviewAddress').innerHTML = `
-    ${addr.street}, ${addr.number}${addr.complement ? ' - ' + addr.complement : ''}<br>
-    ${addr.neighborhood}, ${addr.city} - ${addr.state}<br>
-    CEP: ${addr.cep}
-  `;
+  const reviewAddress = $('#reviewAddress');
+  if (reviewAddress) {
+    reviewAddress.innerHTML = `
+      ${addr.street}, ${addr.number}${addr.complement ? ' - ' + addr.complement : ''}<br>
+      ${addr.neighborhood}, ${addr.city} - ${addr.state}<br>
+      CEP: ${addr.cep}
+    `;
+  }
   
   // Frete
   const shipping = SHIPPING_OPTIONS[checkoutData.shipping.method];
-  $('#reviewShipping').textContent = `${shipping.name} (${shipping.days}) - R$ ${fmt(shipping.price)}`;
+  const reviewShipping = $('#reviewShipping');
+  if (reviewShipping) {
+    reviewShipping.textContent = `${shipping.name} (${shipping.days}) - R$ ${fmt(shipping.price)}`;
+  }
   
   // Pagamento
   let paymentText = '';
@@ -595,7 +603,10 @@ function renderReview() {
       paymentText = 'Boleto Bancário';
       break;
   }
-  $('#reviewPayment').textContent = paymentText;
+  const reviewPayment = $('#reviewPayment');
+  if (reviewPayment) {
+    reviewPayment.textContent = paymentText;
+  }
 }
 
 // ─────────────────────────────────────────────
@@ -618,8 +629,8 @@ async function finishOrder() {
   // Simular processamento
   await new Promise(resolve => setTimeout(resolve, 2000));
   
-  // Limpar carrinho
-  localStorage.removeItem('devsurf_cart');
+  // Obter carrinho antes de limpar
+  const cart = JSON.parse(localStorage.getItem('devsurf_cart') || '[]');
   
   // Salvar pedido no histórico
   const order = {
@@ -632,13 +643,16 @@ async function finishOrder() {
       installments: checkoutData.payment.installments
     },
     shipping: checkoutData.shipping,
-    items: JSON.parse(localStorage.getItem('devsurf_cart') || '[]'),
+    items: cart,
     status: 'confirmed'
   };
   
   const orders = JSON.parse(localStorage.getItem('devsurf_orders') || '[]');
   orders.push(order);
   localStorage.setItem('devsurf_orders', JSON.stringify(orders));
+  
+  // Limpar carrinho
+  localStorage.removeItem('devsurf_cart');
   
   // Mostrar confirmação
   showSuccessScreen(order);
@@ -656,23 +670,10 @@ function showSuccessScreen(order) {
       <div class="success-pix">
         <h3>Pagamento via PIX</h3>
         <div class="pix-qrcode">
-          <svg width="200" height="200" viewBox="0 0 200 200">
-            <rect width="200" height="200" fill="#fff"/>
-            <rect x="20" y="20" width="30" height="30" fill="#000"/>
-            <rect x="60" y="20" width="10" height="10" fill="#000"/>
-            <rect x="80" y="20" width="20" height="20" fill="#000"/>
-            <rect x="110" y="20" width="10" height="10" fill="#000"/>
-            <rect x="150" y="20" width="30" height="30" fill="#000"/>
-            <rect x="20" y="50" width="10" height="10" fill="#000"/>
-            <rect x="40" y="50" width="10" height="10" fill="#000"/>
-            <rect x="150" y="50" width="10" height="10" fill="#000"/>
-            <rect x="170" y="50" width="10" height="10" fill="#000"/>
-            <rect x="70" y="60" width="60" height="80" fill="#000"/>
-            <rect x="20" y="150" width="30" height="30" fill="#000"/>
-            <rect x="60" y="150" width="10" height="10" fill="#000"/>
-            <rect x="80" y="150" width="20" height="20" fill="#000"/>
-            <rect x="150" y="150" width="30" height="30" fill="#000"/>
-          </svg>
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0 1 3.75 9.375v-4.5ZM3.75 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 0 1-1.125-1.125v-4.5ZM13.5 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0 1 13.5 9.375v-4.5Z" />
+  <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 6.75h.75v.75h-.75v-.75ZM6.75 16.5h.75v.75h-.75v-.75ZM16.5 6.75h.75v.75h-.75v-.75ZM13.5 13.5h.75v.75h-.75v-.75ZM13.5 19.5h.75v.75h-.75v-.75ZM19.5 13.5h.75v.75h-.75v-.75ZM19.5 19.5h.75v.75h-.75v-.75ZM16.5 16.5h.75v.75h-.75v-.75Z" />
+</svg>
         </div>
         <p class="pix-code">PIX Copia e Cola:</p>
         <div class="pix-code-box">
@@ -705,10 +706,10 @@ function showSuccessScreen(order) {
       </div>
     ` : '';
   
-  checkoutContent.innerHTML = `
+checkoutContent.innerHTML = `
     <div class="success-screen">
       <div class="success-icon">
-        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2">
+        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
           <polyline points="22 4 12 14.01 9 11.01"></polyline>
         </svg>
@@ -739,7 +740,7 @@ function showSuccessScreen(order) {
       </div>
     </div>
   `;
-}
+  }
 
 // ─────────────────────────────────────────────
 // COPIAR CÓDIGO PIX
@@ -857,15 +858,20 @@ document.addEventListener('DOMContentLoaded', () => {
       const cep = e.target.value;
       
       if (validateCEP(cep)) {
-        const loadingToast = showToast('Buscando endereço...', 'info');
+        showToast('Buscando endereço...', 'info');
         
         const data = await fetchCEP(cep);
         
         if (data) {
-          $('#addressStreet').value = data.street;
-          $('#addressNeighborhood').value = data.neighborhood;
-          $('#addressCity').value = data.city;
-          $('#addressState').value = data.state;
+          const addressStreet = $('#addressStreet');
+          const addressNeighborhood = $('#addressNeighborhood');
+          const addressCity = $('#addressCity');
+          const addressState = $('#addressState');
+          
+          if (addressStreet) addressStreet.value = data.street;
+          if (addressNeighborhood) addressNeighborhood.value = data.neighborhood;
+          if (addressCity) addressCity.value = data.city;
+          if (addressState) addressState.value = data.state;
           
           markFieldValid('#addressCEP');
           showToast('Endereço encontrado!', 'success');
