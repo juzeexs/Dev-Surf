@@ -1155,6 +1155,11 @@ body.menu-active {
     margin-bottom: 1rem;
 }
 
+.price-installment {
+ margin-bottom:1rem;
+
+}
+
 /* Seu estilo atual */
 .price-current {
     font-size: 20px;
