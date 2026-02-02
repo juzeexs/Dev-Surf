@@ -321,21 +321,11 @@ button {
     opacity: 0;
 }
 
-/* Quando o mouse passa ou está ativo */
-.nav-link:hover::after,
-.nav-link.active::after {
-    width: 100%;
-    visibility: visible;
-    opacity: 1;
-}
 
 .nav-link:hover {
     color: var(--dark-color);
 }
 
-.nav-link.active {
-    color: var(--dark-color);
-}
 
 /* --------------------------------------------
    AÇÕES DA NAVBAR (Ícones)
