@@ -70,6 +70,12 @@ button {
     cursor: pointer;
 }
 
+@media screen and (max-width: 768px) {
+  input:focus {
+    font-size: 16px;
+  }
+}
+
 /* --------------------------------------------
    HEADER
    -------------------------------------------- */
