@@ -1,18 +1,11 @@
-// ============================================
-// DEVSURF E-COMMERCE - SCRIPT PRINCIPAL
-// ============================================
-
-// ─────────────────────────────────────────────
-// BANCO DE DADOS DE PRODUTOS
-// ─────────────────────────────────────────────
 const PRODUCTS = {
   1:  { brand:"QUIKSILVER",  name:"Camiseta Quiksilver Comp Logo (Branca)",          price:129.90, image:"https://quiksilver.vtexassets.com/arquivos/ids/402169/Camiseta-Quiksilver-M-C-Comp-Logo-Branco-Branco-P.jpg?v=639015714281370000", description:"Camiseta com estampa frontal, confeccionada em malha 100% algodão.", tags:["camiseta","branca","algodão","básica"] },
   2:  { brand:"HURLEY",      name:"Bermuda Hurley Phantom Marinho",              price:299.90, oldPrice:359.90, image:"https://hurley.com.br/cdn/shop/files/HYBM010356_MARINHO_02_2.jpg?v=1757339899", description:"Bermuda de alta performance com secagem rápida, ideal para surf e lazer.", tags:["bermuda","surf","marinho","performance"] },
   3:  { brand:"QUIKSILVER",  name:"Boné Quiksilver Gradient New Wave",    price:349.90, image:"https://quiksilver.vtexassets.com/arquivos/ids/347746/85008d.jpg?v=638944968222730000", description:"Boné fechado e elegante para uso confortável no dia a dia.", tags:["boné","acessório","gradiente"] },
   4:  { brand:"QUIKSILVER",  name:"Moletom Quiksilver Block Company",     price:449.90, image:"https://imgcentauro-a.akamaihd.net/1300x1300/M0Y5VE02A2.jpg", description:"Moletom confortável e versátil que não pode faltar no guarda-roupa.", tags:["moletom","inverno","conforto"] },
-  5:  { brand:"OAKLEY",      name:"Óculos Oakley Radar EV Lentes Prizm Road",               price:899.90, image:"https://assets2.oakley.com/cdn-record-files-pi/321b72e2-8e98-4183-93ec-b22c0160d590/c2b9a7c5-fa67-4913-a55b-b2a70089be7e/0OO9208__9208G2__PREMIUM__shad__adv2.png?impolicy=OO_ratio&width=3000", description:"O mais famoso óculos Radar EV  excelente opção para você!", tags:["óculos","sol","esporte","premium"] },
-  6:  { brand:"HURLEY",      name:"Boné Hurley Aba Curva Over Icon",      price:269.90, image:"https://cdn.awsli.com.br/287/287385/produto/182077670/0-hyac010185_01-i8vsmxjfbqhhkx3_1600x2000-6cf6398e74.jpg", description:"Boné clássico com aba curva e logo bordado frontal.", tags:["boné","clássico","aba curva"] },
-  7:  { brand:"QUIKSILVER",  name:"Bermuda Boardshort Swell Marinho",     price:254.90, oldPrice:299.90, image:"https://images.tcdn.com.br/img/img_prod/1111144/arrumar_bermuda_quiksilver_boardshort_swell_marinho_masculina_2475_1_76fcad96fd0a273722ed7f1a80f7794f.jpg", description:"Bermuda híbrida versátil para uso aquático e terrestre.", tags:["bermuda","boardshort","surf","marinho"] },
+  5:  { brand:"OAKLEY",      name:"Óculos Oakley Radar EV Lentes Prizm Road",               price:1299.90, image:"https://assets2.oakley.com/cdn-record-files-pi/321b72e2-8e98-4183-93ec-b22c0160d590/c2b9a7c5-fa67-4913-a55b-b2a70089be7e/0OO9208__9208G2__PREMIUM__shad__adv2.png?impolicy=OO_ratio&width=3000", description:"O mais famoso óculos Radar EV  excelente opção para você!", tags:["óculos","sol","esporte","premium"] },
+  6:  { brand:"HURLEY",      name:"Boné Hurley Aba Curva Over Icon",      price:309.90, image:"https://cdn.awsli.com.br/287/287385/produto/182077670/0-hyac010185_01-i8vsmxjfbqhhkx3_1600x2000-6cf6398e74.jpg", description:"Boné clássico com aba curva e logo bordado frontal.", tags:["boné","clássico","aba curva"] },
+  7:  { brand:"QUIKSILVER",  name:"Bermuda Boardshort Swell Marinho",     price:322.90, oldPrice:412.90, image:"https://images.tcdn.com.br/img/img_prod/1111144/arrumar_bermuda_quiksilver_boardshort_swell_marinho_masculina_2475_1_76fcad96fd0a273722ed7f1a80f7794f.jpg", description:"Bermuda híbrida versátil para uso aquático e terrestre.", tags:["bermuda","boardshort","surf","marinho"] },
   8:  { brand:"VOLCOM",      name:"Camiseta Volcom Crisp Stone (Branca)",                 price:169.90, image:"https://volcom.com.br/cdn/shop/files/VLTS01044301.00_02_2.jpg?v=1731935287", description:"Camiseta básica com estampa do logo icônico Volcom Stone.", tags:["camiseta","básica","logo"] },
   9:  { brand:"FREESURF",    name:"Freesurf Baby Look Moving Feminina",            price:139.90, image:"https://s.freesurf.com.br/product/2025/08/baby-look-moving-feminina-freesurf-squard.jpg", description:"Baby look feminina com modelagem ajustada e estampa exclusiva.", tags:["baby look","feminina","ajustada"] },
   10: { brand:"RIP CURL",    name:"Camiseta Rip Curl Icon (Branca)",                 price:159.90, image:"https://021club.com.br/wp-content/uploads/2023/11/15234363617_camiseta20rip20curl20icon20filter20tee200141mte.jpg", description:"Camiseta branca com logo clássico Rip Curl no peito.", tags:["camiseta","branca","clássica"] },
@@ -25,7 +18,7 @@ const PRODUCTS = {
   17: { brand:"OAKLEY",      name:"Camiseta Oakley Bark New (Verde)",                    price:179.90, image:"https://static.allianzparqueshop.com.br/produtos/camiseta-oakley-bark-new-tee-masculina/92/D63-4589-192/D63-4589-192_zoom1.jpg?ts=1764065719", description:"Camiseta premium Oakley com estampa moderna e acabamento diferenciado.", tags:["camiseta","premium","moderna","oakley"] },
   18: { brand:"QUIKSILVER",  name:"Boné Quiksilver Diamond (Vermelho)",              price:279.90, image:"https://quiksilver.vtexassets.com/arquivos/ids/347762/Q911A0316.RED.jpg?v=638944969642270000", description:"Boné clássico Quiksilver com aba curva e logo brilhante.", tags:["boné","clássico","diamond","aba curva"] },
   19: { brand:"RVCA",        name:"Camiseta RVCA Big Logo (Preta)",                    price:159.90, image:"https://soulfightshop.com.br/wp-content/uploads/2024/06/15277261917_2055638_camiseta-m-c-rvca-city-r471a0430_z5_638442282067911808.jpg", description:"Camiseta statement com logo RVCA em destaque no peito.", tags:["camiseta","logo","rvca"] },
-  20: { brand:"QUIKSILVER",  name:"Bermuda Quiksilver Everyday WT26",          price:207.90, oldPrice:259.90, image:"https://tfdbtd.vtexassets.com/arquivos/ids/249793/bermuda-agua-quiksilver-everyday-spray-q491a0431%20-2-.jpg?v=638998557296370000", description:"Bermuda de surf de alta performance com tecnologia de secagem rápida.", tags:["bermuda","surf","performance"] },
+  20: { brand:"QUIKSILVER",  name:"Bermuda Quiksilver Everyday WT26",          price:299.90, oldPrice:399.90, image:"https://tfdbtd.vtexassets.com/arquivos/ids/249793/bermuda-agua-quiksilver-everyday-spray-q491a0431%20-2-.jpg?v=638998557296370000", description:"Bermuda de surf de alta performance com tecnologia de secagem rápida.", tags:["bermuda","surf","performance"] },
   21: { brand:"RIP CURL",    name:"Camiseta Rip Curl Search Icon (Preta)",                 price:169.90, image:"https://images.tcdn.com.br/img/img_prod/481988/camiseta_rip_curl_icon_corp_tee_washed_preto_cte1343_3765_variacao_12809_1_696188f0ee5613c8a5d299fc6c5279f0.jpg", description:"Camiseta inspirada no surf com estampa Wetty no peito.", tags:["camiseta","surf","wetty"] },
   22: { brand:"BILLABONG",   name:"Boné Billabong Trucker All Day Bege",                 price:129.90, image:"https://quiksilver.vtexassets.com/arquivos/ids/348464/Bone-Billabong-Essential-Cinza-U.jpg?v=638945206191700000", description:"Boné trucker versátil com logo Billabong e telinha respirável.", tags:["boné","trucker","billabong"] },
   23: { brand:"HURLEY",      name:"Bermuda Hurley Phantom Block Party",          price:239.90, image:"https://hurley.com.br/cdn/shop/files/boardshorts-phantom-hurley-preto-18-eco-block-party-1.jpg?v=1745592758", description:"Bermuda Phantom com estampa exclusiva Block Party e stretch 4 vias.", tags:["bermuda","phantom","surf"] },
@@ -222,7 +215,14 @@ function addToCart(productId) {
   
   updateCartCount();
   saveCart();
-  showToast(`${product.name} adicionado ao carrinho!`);
+
+  // Limpa a seleção de tamanho após adicionar ao carrinho
+  if (card && activeSize) {
+    activeSize.classList.remove('active');
+  }
+
+  const sizeLabel = selectedSize ? ` (${selectedSize})` : '';
+  showToast(`${product.name}${sizeLabel} adicionado ao carrinho!`);
 }
 
 // ─────────────────────────────────────────────

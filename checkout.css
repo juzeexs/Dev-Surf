@@ -349,34 +349,36 @@ margin-top: 10px;
    OPÇÕES DE FRETE
    ═══════════════════════════════════════════════ */
 .shipping-options {
-  margin: 2rem 0;
-  padding: clamp(1rem, 3vw, 1.5rem);
+  margin: 1rem; /* Reduzido de 2rem para economizar tela */
+  padding: 1rem; /* Reduzido para ganhar espaço interno */
   background: var(--light-gray);
   border-radius: 12px;
 }
 
 .shipping-options h3 {
-  font-size: clamp(1rem, 3vw, 1.1rem);
+  font-size: clamp(0.95rem, 4vw, 1.1rem);
   font-weight: 700;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   color: #000000;
 }
 
+/* Esconde o radio mantendo acessibilidade */
 .shipping-option input[type="radio"] {
   position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
 }
 
 .shipping-option {
   display: block;
   cursor: pointer;
-  padding: clamp(0.875rem, 2vw, 1rem);
-  margin-bottom: 1rem;
+  padding: 0.75rem; /* Padding fixo menor para mobile */
+  margin-bottom: 0.75rem;
   border: 2px solid var(--border-color);
   border-radius: 8px;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 
 .shipping-option:last-child {
@@ -386,16 +388,27 @@ margin-top: 10px;
 .shipping-option:has(input:checked) {
   border-color: #000000;
   background-color: #f9f9f9;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  /* Removido o translateY no mobile para evitar saltos de layout */
 }
 
 .shipping-info {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 1rem;
-  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* Ajuste crucial para telas muito pequenas (abaixo de 350px) */
+@media (max-width: 350px) {
+  .shipping-info {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .shipping-price {
+    align-self: flex-end; /* Preço fica no canto inferior direito */
+    margin-top: -1rem;
+  }
 }
 
 .shipping-details {
@@ -405,20 +418,21 @@ margin-top: 10px;
 
 .shipping-details strong {
   display: block;
-  font-size: clamp(0.9rem, 2.5vw, 1rem);
-  margin-bottom: 0.25rem;
+  font-size: 0.9rem; /* Tamanho fixo legível */
+  line-height: 1.2;
+  margin-bottom: 0.15rem;
   color: #000000;
 }
 
 .shipping-details small {
   display: block;
   color: var(--gray-color);
-  font-size: clamp(0.8rem, 2vw, 0.85rem);
+  font-size: 0.8rem;
 }
 
 .shipping-price {
   font-weight: 700;
-  font-size: clamp(1rem, 3vw, 1.1rem);
+  font-size: 0.95rem;
   color: #000000;
   white-space: nowrap;
 }
