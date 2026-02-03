@@ -6,31 +6,31 @@
 // BANCO DE DADOS DE PRODUTOS
 // ─────────────────────────────────────────────
 const PRODUCTS = {
-  1:  { brand:"QUIKSILVER",  name:"Camiseta Comp Logo (Branca)",          price:129.90, image:"https://quiksilver.vtexassets.com/arquivos/ids/402169/Camiseta-Quiksilver-M-C-Comp-Logo-Branco-Branco-P.jpg?v=639015714281370000", description:"Camiseta com estampa frontal, confeccionada em malha 100% algodão.", tags:["camiseta","branca","algodão","básica"] },
-  2:  { brand:"HURLEY",      name:"Bermuda Phantom Marinho",              price:299.90, oldPrice:359.90, image:"https://hurley.com.br/cdn/shop/files/HYBM010356_MARINHO_02_2.jpg?v=1757339899", description:"Bermuda de alta performance com secagem rápida, ideal para surf e lazer.", tags:["bermuda","surf","marinho","performance"] },
+  1:  { brand:"QUIKSILVER",  name:"Camiseta Quiksilver Comp Logo (Branca)",          price:129.90, image:"https://quiksilver.vtexassets.com/arquivos/ids/402169/Camiseta-Quiksilver-M-C-Comp-Logo-Branco-Branco-P.jpg?v=639015714281370000", description:"Camiseta com estampa frontal, confeccionada em malha 100% algodão.", tags:["camiseta","branca","algodão","básica"] },
+  2:  { brand:"HURLEY",      name:"Bermuda Hurley Phantom Marinho",              price:299.90, oldPrice:359.90, image:"https://hurley.com.br/cdn/shop/files/HYBM010356_MARINHO_02_2.jpg?v=1757339899", description:"Bermuda de alta performance com secagem rápida, ideal para surf e lazer.", tags:["bermuda","surf","marinho","performance"] },
   3:  { brand:"QUIKSILVER",  name:"Boné Quiksilver Gradient New Wave",    price:349.90, image:"https://quiksilver.vtexassets.com/arquivos/ids/347746/85008d.jpg?v=638944968222730000", description:"Boné fechado e elegante para uso confortável no dia a dia.", tags:["boné","acessório","gradiente"] },
   4:  { brand:"QUIKSILVER",  name:"Moletom Quiksilver Block Company",     price:449.90, image:"https://imgcentauro-a.akamaihd.net/1300x1300/M0Y5VE02A2.jpg", description:"Moletom confortável e versátil que não pode faltar no guarda-roupa.", tags:["moletom","inverno","conforto"] },
-  5:  { brand:"OAKLEY",      name:"Óculos Oakley Radar EV",               price:899.90, image:"https://assets2.oakley.com/cdn-record-files-pi/321b72e2-8e98-4183-93ec-b22c0160d590/c2b9a7c5-fa67-4913-a55b-b2a70089be7e/0OO9208__9208G2__PREMIUM__shad__adv2.png?impolicy=OO_ratio&width=3000", description:"O mais famoso óculos Radar EV  excelente opção para você!", tags:["óculos","sol","esporte","premium"] },
+  5:  { brand:"OAKLEY",      name:"Óculos Oakley Radar EV Lentes Prizm Road",               price:899.90, image:"https://assets2.oakley.com/cdn-record-files-pi/321b72e2-8e98-4183-93ec-b22c0160d590/c2b9a7c5-fa67-4913-a55b-b2a70089be7e/0OO9208__9208G2__PREMIUM__shad__adv2.png?impolicy=OO_ratio&width=3000", description:"O mais famoso óculos Radar EV  excelente opção para você!", tags:["óculos","sol","esporte","premium"] },
   6:  { brand:"HURLEY",      name:"Boné Hurley Aba Curva Over Icon",      price:269.90, image:"https://cdn.awsli.com.br/287/287385/produto/182077670/0-hyac010185_01-i8vsmxjfbqhhkx3_1600x2000-6cf6398e74.jpg", description:"Boné clássico com aba curva e logo bordado frontal.", tags:["boné","clássico","aba curva"] },
   7:  { brand:"QUIKSILVER",  name:"Bermuda Boardshort Swell Marinho",     price:254.90, oldPrice:299.90, image:"https://images.tcdn.com.br/img/img_prod/1111144/arrumar_bermuda_quiksilver_boardshort_swell_marinho_masculina_2475_1_76fcad96fd0a273722ed7f1a80f7794f.jpg", description:"Bermuda híbrida versátil para uso aquático e terrestre.", tags:["bermuda","boardshort","surf","marinho"] },
-  8:  { brand:"VOLCOM",      name:"Camiseta Crisp Stone",                 price:169.90, image:"https://volcom.com.br/cdn/shop/files/VLTS01044301.00_02_2.jpg?v=1731935287", description:"Camiseta básica com estampa do logo icônico Volcom Stone.", tags:["camiseta","básica","logo"] },
-  9:  { brand:"FREESURF",    name:"Baby Look Moving Feminina",            price:139.90, image:"https://s.freesurf.com.br/product/2025/08/baby-look-moving-feminina-freesurf-squard.jpg", description:"Baby look feminina com modelagem ajustada e estampa exclusiva.", tags:["baby look","feminina","ajustada"] },
-  10: { brand:"RIP CURL",    name:"Camiseta Icon Branca",                 price:159.90, image:"https://021club.com.br/wp-content/uploads/2023/11/15234363617_camiseta20rip20curl20icon20filter20tee200141mte.jpg", description:"Camiseta branca com logo clássico Rip Curl no peito.", tags:["camiseta","branca","clássica"] },
-  11: { brand:"VANS",        name:"Boné Classic Patch Trucker",           price:149.90, image:"https://secure-static.vans.com.br/medias/sys_master/vans/vans/h89/hbe/h00/h00/12917068365854/Midres-Vans-V4600661340003-01.jpg?w=1920&q=100", description:"Boné trucker com patch clássico da Vans e telinha traseira.", tags:["boné","trucker","patch","vans"] },
-  12: { brand:"O'NEILL",     name:"Bermuda Hyperfreak Hydro",             price:209.90, oldPrice:279.90, image:"https://m.media-amazon.com/images/I/71kgYhvf--L._AC_SR736,920_.jpg", description:"Bermuda premium com tecnologia Hyperfreak para máxima flexibilidade.", tags:["bermuda","tecnologia","leve","surf"] },
-  13: { brand:"BILLABONG",   name:"Camiseta All Day Wave",                price:149.90, image:"https://quiksilver.vtexassets.com/arquivos/ids/362547/B471A0762_02.00_101.jpg?v=638960511312970000", description:"Camiseta com estampa de onda, perfeita para o dia a dia.", tags:["camiseta","surf","wave","algodão"] },
-  14: { brand:"QUIKSILVER",  name:"Mochila Esportiva H02",                price:229.90, image:"https://quiksilver.vtexassets.com/arquivos/ids/410985/Mochila-Quiksilver-Esportiva-Quiksilver-H02-Preto-Preto-U.jpg?v=639051152732370000", description:"Mochila esportiva com múltiplos compartimentos e alças acolchoadas.", tags:["mochila","esportiva","preta","compartimentos"] },
-  15: { brand:"HURLEY",      name:"Regata Silk Icon Branca",              price:119.90, image:"https://a-static.mlcdn.com.br/800x800/regata-hurley-icon-masculina/netshoes/d71-3290-014-05/5b8721b686c7069e912e8d917a167a67.jpeg", description:"Regata leve e confortável com estampa em silk screen.", tags:["regata","branca","leve","silk"] },
-  16: { brand:"VOLCOM",      name:"Bermuda Lido Solid 20\"",              price:188.90, oldPrice:269.90, image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQf6tnM-cnZtiVBNhOaSycwcxruCAd1tBySXws6KFMRk1o4O5Qkmxi4tc8&s=10", description:"Bermuda clássica de 20 polegadas com bolsos funcionais.", tags:["bermuda","clássica","bolsos"] },
-  17: { brand:"OAKLEY",      name:"Camiseta Bark New",                    price:179.90, image:"https://static.allianzparqueshop.com.br/produtos/camiseta-oakley-bark-new-tee-masculina/92/D63-4589-192/D63-4589-192_zoom1.jpg?ts=1764065719", description:"Camiseta premium Oakley com estampa moderna e acabamento diferenciado.", tags:["camiseta","premium","moderna","oakley"] },
-  18: { brand:"QUIKSILVER",  name:"Boné Quiksilver Diamond",              price:279.90, image:"https://quiksilver.vtexassets.com/arquivos/ids/347762/Q911A0316.RED.jpg?v=638944969642270000", description:"Boné clássico Quiksilver com aba curva e logo brilhante.", tags:["boné","clássico","diamond","aba curva"] },
-  19: { brand:"RVCA",        name:"Camiseta Big Logo",                    price:159.90, image:"https://soulfightshop.com.br/wp-content/uploads/2024/06/15277261917_2055638_camiseta-m-c-rvca-city-r471a0430_z5_638442282067911808.jpg", description:"Camiseta statement com logo RVCA em destaque no peito.", tags:["camiseta","logo","rvca"] },
-  20: { brand:"QUIKSILVER",  name:"Bermuda Quiksilver Everyday",          price:207.90, oldPrice:259.90, image:"https://tfdbtd.vtexassets.com/arquivos/ids/249793/bermuda-agua-quiksilver-everyday-spray-q491a0431%20-2-.jpg?v=638998557296370000", description:"Bermuda de surf de alta performance com tecnologia de secagem rápida.", tags:["bermuda","surf","performance"] },
-  21: { brand:"RIP CURL",    name:"Camiseta Wetty Chest",                 price:169.90, image:"https://images.tcdn.com.br/img/img_prod/481988/camiseta_rip_curl_icon_corp_tee_washed_preto_cte1343_3765_variacao_12809_1_696188f0ee5613c8a5d299fc6c5279f0.jpg", description:"Camiseta inspirada no surf com estampa Wetty no peito.", tags:["camiseta","surf","wetty"] },
-  22: { brand:"BILLABONG",   name:"Boné Trucker All Day",                 price:129.90, image:"https://quiksilver.vtexassets.com/arquivos/ids/348464/Bone-Billabong-Essential-Cinza-U.jpg?v=638945206191700000", description:"Boné trucker versátil com logo Billabong e telinha respirável.", tags:["boné","trucker","billabong"] },
-  23: { brand:"HURLEY",      name:"Bermuda Phantom Block Party",          price:239.90, image:"https://hurley.com.br/cdn/shop/files/boardshorts-phantom-hurley-preto-18-eco-block-party-1.jpg?v=1745592758", description:"Bermuda Phantom com estampa exclusiva Block Party e stretch 4 vias.", tags:["bermuda","phantom","surf"] },
-  24: { brand:"O'NEILL",     name:"Camiseta Circle Surfer",               price:135.90, oldPrice:159.90, image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1gQDjFrr5HJ4nNkohtFWFF9DnHzUCOU0k4qQKt6yv58DIV2qAIgUI6eY&s=10", description:"Camiseta com estampa Circle Surfer icônica da O'Neill.", tags:["camiseta","oneill","surf"] },
-  25: { brand:"VANS",        name:"Camiseta Classic Logo",                price:149.90, image:"https://imgcentauro-a.akamaihd.net/768x768/97731402.jpg", description:"Camiseta básica Vans com logo clássico estampado no peito.", tags:["camiseta","vans","básica"] }
+  8:  { brand:"VOLCOM",      name:"Camiseta Volcom Crisp Stone (Branca)",                 price:169.90, image:"https://volcom.com.br/cdn/shop/files/VLTS01044301.00_02_2.jpg?v=1731935287", description:"Camiseta básica com estampa do logo icônico Volcom Stone.", tags:["camiseta","básica","logo"] },
+  9:  { brand:"FREESURF",    name:"Freesurf Baby Look Moving Feminina",            price:139.90, image:"https://s.freesurf.com.br/product/2025/08/baby-look-moving-feminina-freesurf-squard.jpg", description:"Baby look feminina com modelagem ajustada e estampa exclusiva.", tags:["baby look","feminina","ajustada"] },
+  10: { brand:"RIP CURL",    name:"Camiseta Rip Curl Icon (Branca)",                 price:159.90, image:"https://021club.com.br/wp-content/uploads/2023/11/15234363617_camiseta20rip20curl20icon20filter20tee200141mte.jpg", description:"Camiseta branca com logo clássico Rip Curl no peito.", tags:["camiseta","branca","clássica"] },
+  11: { brand:"VANS",        name:"Boné Vans Classic Patch Trucker",           price:149.90, image:"https://secure-static.vans.com.br/medias/sys_master/vans/vans/h89/hbe/h00/h00/12917068365854/Midres-Vans-V4600661340003-01.jpg?w=1920&q=100", description:"Boné trucker com patch clássico da Vans e telinha traseira.", tags:["boné","trucker","patch","vans"] },
+  12: { brand:"O'NEILL",     name:"Bermuda O'Neill Hyperfreak Hydro",             price:209.90, oldPrice:279.90, image:"https://m.media-amazon.com/images/I/71kgYhvf--L._AC_SR736,920_.jpg", description:"Bermuda premium com tecnologia Hyperfreak para máxima flexibilidade.", tags:["bermuda","tecnologia","leve","surf"] },
+  13: { brand:"BILLABONG",   name:"Camiseta Billabong All Day Wave",                price:149.90, image:"https://quiksilver.vtexassets.com/arquivos/ids/362547/B471A0762_02.00_101.jpg?v=638960511312970000", description:"Camiseta com estampa de onda, perfeita para o dia a dia.", tags:["camiseta","surf","wave","algodão"] },
+  14: { brand:"QUIKSILVER",  name:"Mochila Quiksilver Esportiva H02",                price:229.90, image:"https://quiksilver.vtexassets.com/arquivos/ids/410985/Mochila-Quiksilver-Esportiva-Quiksilver-H02-Preto-Preto-U.jpg?v=639051152732370000", description:"Mochila esportiva com múltiplos compartimentos e alças acolchoadas.", tags:["mochila","esportiva","preta","compartimentos"] },
+  15: { brand:"HURLEY",      name:"Regata Hurley Silk Icon (Branca)",              price:119.90, image:"https://a-static.mlcdn.com.br/800x800/regata-hurley-icon-masculina/netshoes/d71-3290-014-05/5b8721b686c7069e912e8d917a167a67.jpeg", description:"Regata leve e confortável com estampa em silk screen.", tags:["regata","branca","leve","silk"] },
+  16: { brand:"VOLCOM",      name:"Bermuda Volcom Lido Solid 20\"",              price:188.90, oldPrice:269.90, image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQf6tnM-cnZtiVBNhOaSycwcxruCAd1tBySXws6KFMRk1o4O5Qkmxi4tc8&s=10", description:"Bermuda clássica de 20 polegadas com bolsos funcionais.", tags:["bermuda","clássica","bolsos"] },
+  17: { brand:"OAKLEY",      name:"Camiseta Oakley Bark New (Verde)",                    price:179.90, image:"https://static.allianzparqueshop.com.br/produtos/camiseta-oakley-bark-new-tee-masculina/92/D63-4589-192/D63-4589-192_zoom1.jpg?ts=1764065719", description:"Camiseta premium Oakley com estampa moderna e acabamento diferenciado.", tags:["camiseta","premium","moderna","oakley"] },
+  18: { brand:"QUIKSILVER",  name:"Boné Quiksilver Diamond (Vermelho)",              price:279.90, image:"https://quiksilver.vtexassets.com/arquivos/ids/347762/Q911A0316.RED.jpg?v=638944969642270000", description:"Boné clássico Quiksilver com aba curva e logo brilhante.", tags:["boné","clássico","diamond","aba curva"] },
+  19: { brand:"RVCA",        name:"Camiseta RVCA Big Logo (Preta)",                    price:159.90, image:"https://soulfightshop.com.br/wp-content/uploads/2024/06/15277261917_2055638_camiseta-m-c-rvca-city-r471a0430_z5_638442282067911808.jpg", description:"Camiseta statement com logo RVCA em destaque no peito.", tags:["camiseta","logo","rvca"] },
+  20: { brand:"QUIKSILVER",  name:"Bermuda Quiksilver Everyday WT26",          price:207.90, oldPrice:259.90, image:"https://tfdbtd.vtexassets.com/arquivos/ids/249793/bermuda-agua-quiksilver-everyday-spray-q491a0431%20-2-.jpg?v=638998557296370000", description:"Bermuda de surf de alta performance com tecnologia de secagem rápida.", tags:["bermuda","surf","performance"] },
+  21: { brand:"RIP CURL",    name:"Camiseta Rip Curl Wetty Chest",                 price:169.90, image:"https://images.tcdn.com.br/img/img_prod/481988/camiseta_rip_curl_icon_corp_tee_washed_preto_cte1343_3765_variacao_12809_1_696188f0ee5613c8a5d299fc6c5279f0.jpg", description:"Camiseta inspirada no surf com estampa Wetty no peito.", tags:["camiseta","surf","wetty"] },
+  22: { brand:"BILLABONG",   name:"Boné Billabong Trucker All Day",                 price:129.90, image:"https://quiksilver.vtexassets.com/arquivos/ids/348464/Bone-Billabong-Essential-Cinza-U.jpg?v=638945206191700000", description:"Boné trucker versátil com logo Billabong e telinha respirável.", tags:["boné","trucker","billabong"] },
+  23: { brand:"HURLEY",      name:"Bermuda Hurley Phantom Block Party",          price:239.90, image:"https://hurley.com.br/cdn/shop/files/boardshorts-phantom-hurley-preto-18-eco-block-party-1.jpg?v=1745592758", description:"Bermuda Phantom com estampa exclusiva Block Party e stretch 4 vias.", tags:["bermuda","phantom","surf"] },
+  24: { brand:"O'NEILL",     name:"Camiseta O'Neill Circle Surfer (Branca)",               price:135.90, oldPrice:159.90, image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1gQDjFrr5HJ4nNkohtFWFF9DnHzUCOU0k4qQKt6yv58DIV2qAIgUI6eY&s=10", description:"Camiseta com estampa Circle Surfer icônica da O'Neill.", tags:["camiseta","oneill","surf"] },
+  25: { brand:"VANS",        name:"Camiseta Vans Feminina Classic Logo",                price:149.90, image:"https://imgcentauro-a.akamaihd.net/768x768/97731402.jpg", description:"Camiseta básica Vans com logo clássico estampado no peito.", tags:["camiseta","vans","básica"] }
 };
 
 // ─────────────────────────────────────────────
@@ -48,24 +48,73 @@ const $$ = (sel) => document.querySelectorAll(sel);
 // ─────────────────────────────────────────────
 // RENDERIZAÇÃO DE PRODUTOS
 // ─────────────────────────────────────────────
+// Mapeamento de tamanhos por tipo de roupa
+const SIZES_BY_TYPE = {
+  camiseta:   ['P', 'M', 'G', 'GG'],
+  camisa:     ['P', 'M', 'G', 'GG'],
+  polo:       ['PP', 'P', 'M', 'G', 'GG'],
+  regata:     [ 'P','G', 'GG'],
+  calca:      ['34', '36', '38', '40', '42', '44', '46'],
+  bermuda:    ['38', '40', '42', '44',],
+  shorts:     ['34', '36', '38', '40', '42', '44', '46'],
+  vestido:    ['PP', 'P', 'M', 'G', 'GG'],
+  saia:       ['PP', 'P', 'M', 'G', 'GG'],
+  blusa:      ['PP', 'P', 'M', 'G', 'GG'],
+  jaqueta:    ['PP', 'P', 'M', 'G', 'GG'],
+  moletom:    ['P', 'M', 'G',],
+  calcolete:  ['34', '36', '38', '40', '42', '44', '46'],
+  meia:       ['36', '38', '40', '42'],
+  cueca:      ['P', 'M', 'G', 'GG'],
+  sutiê:      ['32A', '34A', '36A', '38A', '36B', '38B', '40B'],
+  sapato:     ['33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43'],
+  tenis:      ['33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43'],
+  bota:       ['33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43'],
+  sandalia:   ['33', '34', '35', '36', '37', '38', '39', '40'],
+  chapeu:     ['S', 'M', 'L', 'XL'],
+  bone:       ['P','M'],
+};
+
+// Função para resolver os tamanhos com base no tipo do produto
+// Aceita um campo `type` no produto; se não houver, tenta inferir pelo nome
+function getSizesForProduct(product) {
+  if (product.type && SIZES_BY_TYPE[product.type.toLowerCase()]) {
+    return SIZES_BY_TYPE[product.type.toLowerCase()];
+  }
+
+  // Tentativa de inferência pelo nome do produto
+  const name = product.name.toLowerCase();
+  for (const [type, sizes] of Object.entries(SIZES_BY_TYPE)) {
+    if (name.includes(type)) return sizes;
+  }
+
+  // Fallback genérico
+  return ['P', 'M',];
+}
+
 function renderProducts() {
   const grid = $('#productsGrid');
   if (!grid) return;
-  
+
   grid.innerHTML = Object.entries(PRODUCTS).map(([id, product]) => {
     // Badge de desconto ou novidade
-    const badge = product.oldPrice ? 
-      `<span class="product-badge">-${Math.round((1 - product.price/product.oldPrice) * 100)}%</span>` :
+    const badge = product.oldPrice ?
+      `<span class="product-badge">-${Math.round((1 - product.price / product.oldPrice) * 100)}%</span>` :
       (parseInt(id) <= 5 ? '<span class="product-badge">Novo</span>' : '');
-    
+
     // Preço antigo (se houver)
-    const oldPriceHtml = product.oldPrice ? 
+    const oldPriceHtml = product.oldPrice ?
       `<span class="price-old">R$ ${fmt(product.oldPrice)}</span>` : '';
-    
+
     // Cálculo de parcelas
     const installments = Math.min(Math.floor(product.price / 50), 12);
     const installmentValue = product.price / installments;
-    
+
+    // Tamanhos disponíveis para o produto
+    const sizes = getSizesForProduct(product);
+    const sizesHtml = sizes.map(size =>
+      `<button class="size-btn" data-size="${size}">${size}</button>`
+    ).join('');
+
     return `
       <div class="product-card" data-product-id="${id}">
         <div class="product-image">
@@ -74,11 +123,21 @@ function renderProducts() {
         </div>
         <div class="product-info">
           <h3 class="product-name">${product.name}</h3>
+          <p class="product-brand">${product.brand || 'Marca não informada'}</p>
+
           <div class="product-price">
             ${oldPriceHtml}
             <span class="price-current">R$ ${fmt(product.price)}</span>
           </div>
           <p class="price-installment">ou ${installments}x de R$ ${fmt(installmentValue)} sem juros</p>
+
+          <div class="product-sizes">
+            <span class="sizes-label">Tamanho:</span>
+            <div class="sizes-options">
+              ${sizesHtml}
+            </div>
+          </div>
+
           <button class="add-to-cart-btn" data-id="${id}">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <circle cx="9" cy="21" r="1"></circle>
@@ -91,10 +150,20 @@ function renderProducts() {
       </div>
     `;
   }).join('');
-  
-  // Vincular eventos após renderizar
-  bindProductButtons();
+
+  // Delegação de eventos: seleção de tamanho
+  grid.addEventListener('click', (e) => {
+    const btn = e.target.closest('.size-btn');
+    if (!btn) return;
+
+    const card = btn.closest('.product-card');
+    // Remove seleção anterior dentro do mesmo card
+    card.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+    // Marca o novo tamanho como ativo
+    btn.classList.add('active');
+  });
 }
+
 
 // ─────────────────────────────────────────────
 // VINCULAR BOTÕES DOS PRODUTOS
@@ -123,24 +192,33 @@ function addToCart(productId) {
   const id = parseInt(productId);
   const product = PRODUCTS[id];
   
-  console.log('Adicionando produto:', id, product);
-  
   if (!product) {
     console.error('Produto não encontrado:', id);
     return;
   }
-  
-  const existing = cart.find(item => item.id === id);
+
+  // Buscar o tamanho selecionado dentro do card correspondente
+  const card = document.querySelector(`.product-card[data-product-id="${id}"]`);
+  const activeSize = card?.querySelector('.size-btn.active');
+  const selectedSize = activeSize ? activeSize.getAttribute('data-size') : null;
+
+  // Produtos que precisam de tamanho (tudo exceto "Único")
+  const sizes = getSizesForProduct(product);
+  const needsSize = !(sizes.length === 1 && sizes[0] === 'Único');
+
+  if (needsSize && !selectedSize) {
+    showToast('Selecione um tamanho antes de adicionar', 'error');
+    return;
+  }
+
+  // Chave única: id + tamanho (permite mesmo produto em tamanhos diferentes)
+  const existing = cart.find(item => item.id === id && item.size === selectedSize);
   
   if (existing) {
     existing.qty++;
-    console.log('Produto já existe, incrementando quantidade:', existing);
   } else {
-    cart.push({ id, ...product, qty: 1 });
-    console.log('Novo produto adicionado ao carrinho');
+    cart.push({ id, ...product, size: selectedSize, qty: 1 });
   }
-  
-  console.log('Carrinho atual:', cart);
   
   updateCartCount();
   saveCart();
@@ -216,15 +294,16 @@ function renderCart() {
       <div class="cart-item-info">
         <h4>${item.name}</h4>
         <p class="cart-item-brand">${item.brand}</p>
+        ${item.size ? `<p class="cart-item-size">Tamanho: ${item.size}</p>` : ''}
         <p class="cart-item-price">R$ ${fmt(item.price)}</p>
       </div>
       <div class="cart-item-actions">
         <div class="qty-control">
-          <button class="qty-btn" onclick="updateQuantity(${item.id}, ${item.qty - 1})">−</button>
+          <button class="qty-btn" onclick="updateQuantity(${item.id}, '${item.size}', ${item.qty - 1})">−</button>
           <span>${item.qty}</span>
-          <button class="qty-btn" onclick="updateQuantity(${item.id}, ${item.qty + 1})">+</button>
+          <button class="qty-btn" onclick="updateQuantity(${item.id}, '${item.size}', ${item.qty + 1})">+</button>
         </div>
-        <button class="remove-item-btn" onclick="removeFromCart(${item.id})" aria-label="Remover item">
+        <button class="remove-item-btn" onclick="removeFromCart(${item.id}, '${item.size}')" aria-label="Remover item">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M3 6h18M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2m3 0v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6h14z"></path>
           </svg>
@@ -242,13 +321,13 @@ function renderCart() {
 // ─────────────────────────────────────────────
 // ATUALIZAR QUANTIDADE DE PRODUTO
 // ─────────────────────────────────────────────
-function updateQuantity(id, newQty) {
+function updateQuantity(id, size, newQty) {
   if (newQty <= 0) {
-    removeFromCart(id);
+    removeFromCart(id, size);
     return;
   }
   
-  const item = cart.find(i => i.id === id);
+  const item = cart.find(i => i.id === id && i.size === size);
   if (item) {
     item.qty = newQty;
     renderCart();
@@ -260,9 +339,9 @@ function updateQuantity(id, newQty) {
 // ─────────────────────────────────────────────
 // REMOVER PRODUTO DO CARRINHO
 // ─────────────────────────────────────────────
-function removeFromCart(id) {
-  const product = cart.find(item => item.id === id);
-  cart = cart.filter(item => item.id !== id);
+function removeFromCart(id, size) {
+  const product = cart.find(item => item.id === id && item.size === size);
+  cart = cart.filter(item => !(item.id === id && item.size === size));
   
   renderCart();
   updateCartCount();
@@ -280,19 +359,11 @@ function openCart() {
   const drawer = $('#cartDrawer');
   const overlay = $('#cartOverlay');
   
-  console.log('Abrindo carrinho...');
-  console.log('Drawer encontrado:', drawer);
-  console.log('Overlay encontrado:', overlay);
-  console.log('Itens no carrinho:', cart.length);
-  
   if (drawer && overlay) {
     renderCart();
     drawer.classList.add('active');
     overlay.classList.add('active');
     document.body.classList.add('cart-open');
-    console.log('Carrinho aberto com sucesso!');
-  } else {
-    console.error('Elementos do carrinho não encontrados!');
   }
 }
 
@@ -313,9 +384,14 @@ function closeCart() {
 // ─────────────────────────────────────────────
 // NOTIFICAÇÃO TOAST
 // ─────────────────────────────────────────────
-function showToast(message) {
+function showToast(message, type = 'success') {
   const toast = document.createElement('div');
-  toast.className = 'devsurf-toast';
+  toast.className = 'devsurf-toast' + (type === 'error' ? ' toast-error' : '');
+
+  const iconPath = type === 'error'
+    ? 'M6 18L18 6M6 6l12 12'   // ✕
+    : 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'; // ✓
+
   toast.innerHTML = `
 <svg 
   xmlns="http://www.w3.org/2000/svg" 
@@ -328,7 +404,7 @@ function showToast(message) {
     stroke-linecap="round" 
     stroke-linejoin="round" 
     stroke-width="2" 
-    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+    d="${iconPath}"
   />
 </svg>
     <span>${message}</span>
@@ -1143,26 +1219,12 @@ function injectCartHTML() {
 // INICIALIZAÇÃO
 // ─────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('🏄 DevSurf - E-commerce inicializando...');
-  
   // Carregar carrinho salvo
   loadCart();
-  console.log('Carrinho carregado:', cart);
   
   // Injetar estilos e HTML do carrinho
   injectStyles();
-  console.log('Estilos injetados');
-  
   injectCartHTML();
-  console.log('HTML do carrinho injetado');
-  
-  // Verificar se elementos foram criados
-  console.log('Verificando elementos do carrinho:');
-  console.log('- cartDrawer:', $('#cartDrawer'));
-  console.log('- cartOverlay:', $('#cartOverlay'));
-  console.log('- cartItems:', $('#cartItems'));
-  console.log('- cartEmpty:', $('#cartEmpty'));
-  console.log('- cartFooter:', $('#cartFooter'));
   
   // Inicializar componentes
   initHeader();
@@ -1174,20 +1236,11 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Renderizar produtos
   renderProducts();
-  console.log('Produtos renderizados');
+  bindProductButtons();
   
   // Botão abrir carrinho
   const cartBtn = $('#cartBtn');
-  console.log('Botão do carrinho:', cartBtn);
-  
   if (cartBtn) {
-    cartBtn.addEventListener('click', () => {
-      console.log('Botão do carrinho clicado!');
-      openCart();
-    });
-  } else {
-    console.error('Botão do carrinho não encontrado!');
+    cartBtn.addEventListener('click', openCart);
   }
-  
-  console.log('✅ DevSurf - E-commerce carregado com sucesso!');
 });
