@@ -249,45 +249,46 @@ function updateTotals() {
   }
   if (totalEl) totalEl.textContent = `R$ ${fmt(total)}`;
 
-  // ── Badge "Frete Grátis" no resumo ──
-  const badge = $('#freeShippingBadge');
-  if (badge) {
-    badge.style.display = isFreeShipping ? 'flex' : 'none';
-  }
-
-  // ── Hint no painel de frete (step 2) ──
-  const hint = $('#shippingHint');
-  if (hint) {
+  // ── Banner simples de frete grátis ──
+  const shippingBanner = $('#shippingBanner');
+  if (shippingBanner) {
     if (isFreeShipping) {
-      hint.style.display   = 'flex';
-      hint.style.background = '#f0fdf4';
-      hint.style.border     = '1px solid #bbf7d0';
-      hint.style.color      = '#16a34a';
-      hint.innerHTML = '🎉 Parabéns! Seu pedido tem frete grátis!';
+      shippingBanner.textContent = '✓ Frete grátis liberado!';
+      shippingBanner.style.display = 'block';
+      shippingBanner.style.background = '#d1fae5';
+      shippingBanner.style.color = '#065f46';
     } else if (subtotal > 0) {
       const remaining = FREE_SHIPPING_THRESHOLD - subtotal;
-      hint.style.display   = 'flex';
-      hint.style.background = '#fefce8';
-      hint.style.border     = '1px solid #fde047';
-      hint.style.color      = '#a16207';
-      hint.innerHTML = `💡 Adicione mais <strong>R$ ${fmt(remaining)}</strong> ao pedido para ganhar <strong>frete grátis</strong>!`;
+      shippingBanner.textContent = `Faltam R$ ${fmt(remaining)} para frete grátis`;
+      shippingBanner.style.display = 'block';
+      shippingBanner.style.background = '#fef3c7';
+      shippingBanner.style.color = '#78350f';
     } else {
-      hint.style.display = 'none';
+      shippingBanner.style.display = 'none';
     }
   }
 
-  // ── preços nas labels de frete (riscados se grátis) ──
+  // ── Atualizar preços de frete ──
+  const reviewShipping = $('#reviewShipping');
+  if (reviewShipping) {
+    const shipping = SHIPPING_OPTIONS[checkoutData.shipping.method];
+    const priceDisplay = isFreeShipping 
+      ? '<span style="color:#16a34a;font-weight:700;">Grátis</span>' 
+      : `R$ ${fmt(shipping.price)}`;
+    reviewShipping.innerHTML = `${shipping.name} (${shipping.days}) - ${priceDisplay}`;
+  }
+
   const stdPrice = $('#shippingPriceStandard');
   const expPrice = $('#shippingPriceExpress');
   if (stdPrice) {
-    stdPrice.innerHTML = isFreeShipping
-      ? '<span style="text-decoration:line-through;color:#999;font-weight:400;">R$ 15,90</span> <span style="color:#16a34a;font-weight:700;">Grátis</span>'
-      : 'R$ 15,90';
+    stdPrice.textContent = isFreeShipping ? 'Grátis' : 'R$ 15,90';
+    stdPrice.style.color = isFreeShipping ? '#16a34a' : '';
+    stdPrice.style.fontWeight = isFreeShipping ? '700' : '';
   }
   if (expPrice) {
-    expPrice.innerHTML = isFreeShipping
-      ? '<span style="text-decoration:line-through;color:#999;font-weight:400;">R$ 29,90</span> <span style="color:#16a34a;font-weight:700;">Grátis</span>'
-      : 'R$ 29,90';
+    expPrice.textContent = isFreeShipping ? 'Grátis' : 'R$ 29,90';
+    expPrice.style.color = isFreeShipping ? '#16a34a' : '';
+    expPrice.style.fontWeight = isFreeShipping ? '700' : '';
   }
 }
 
@@ -634,18 +635,25 @@ function renderReview() {
   }
   
   // Frete
-  const shipping = SHIPPING_OPTIONS[checkoutData.shipping.method];
-  const cart = JSON.parse(localStorage.getItem('devsurf_cart') || '[]');
-  const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-  const isFreeShipping = subtotal >= FREE_SHIPPING_THRESHOLD;
-  const reviewShipping = $('#reviewShipping');
-  if (reviewShipping) {
-    if (isFreeShipping) {
-      reviewShipping.innerHTML = `${shipping.name} (${shipping.days}) - <span style="color:#16a34a;font-weight:700;">Grátis</span>`;
-    } else {
-      reviewShipping.textContent = `${shipping.name} (${shipping.days}) - R$ ${fmt(shipping.price)}`;
-    }
-  }
+// Busca as configurações e dados do carrinho
+const shipping = SHIPPING_OPTIONS[checkoutData.shipping.method];
+const cart = JSON.parse(localStorage.getItem('devsurf_cart') || '[]');
+
+// Calcula o subtotal e verifica a regra de frete grátis
+const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+const isFreeShipping = subtotal >= FREE_SHIPPING_THRESHOLD;
+
+const reviewShipping = $('#reviewShipping');
+
+if (reviewShipping) {
+  // Define o que será exibido no final da linha (Preço formatado ou "Grátis")
+  const priceDisplay = isFreeShipping 
+    ? '<span style="color:#16a34a;font-weight:700;">Grátis</span>' 
+    : `R$ ${fmt(shipping.price)}`;
+
+  // Atualiza o elemento no HTML
+  reviewShipping.innerHTML = `${shipping.name} (${shipping.days}) - ${priceDisplay}`;
+}
   
   // Pagamento
   let paymentText = '';
