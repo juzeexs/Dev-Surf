@@ -39,6 +39,9 @@ const SHIPPING_OPTIONS = {
   express: { name: 'Expresso', days: '2-3 dias úteis', price: 29.90 }
 };
 
+// Valor mínimo do subtotal para frete grátis
+const FREE_SHIPPING_THRESHOLD = 299;
+
 // ─────────────────────────────────────────────
 // UTILIDADES
 // ─────────────────────────────────────────────
@@ -222,16 +225,70 @@ function renderOrderSummary() {
 function updateTotals() {
   const cart = JSON.parse(localStorage.getItem('devsurf_cart') || '[]');
   const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-  const shipping = checkoutData.shipping.price;
+
+  // ── frete grátis quando subtotal >= threshold ──
+  const isFreeShipping = subtotal >= FREE_SHIPPING_THRESHOLD;
+  const shipping = isFreeShipping ? 0 : checkoutData.shipping.price;
   const total = subtotal + shipping;
-  
+
+  // atualizar estado interno
+  checkoutData.shipping.price = shipping;
+
+  // ── Resumo lateral ──
   const subtotalEl = $('#summarySubtotal');
   const shippingEl = $('#summaryShipping');
-  const totalEl = $('#summaryTotal');
-  
+  const totalEl    = $('#summaryTotal');
+
   if (subtotalEl) subtotalEl.textContent = `R$ ${fmt(subtotal)}`;
-  if (shippingEl) shippingEl.textContent = shipping > 0 ? `R$ ${fmt(shipping)}` : 'A calcular';
+  if (shippingEl) {
+    if (isFreeShipping) {
+      shippingEl.innerHTML = '<span style="color:#16a34a;font-weight:700;">Grátis</span>';
+    } else {
+      shippingEl.textContent = shipping > 0 ? `R$ ${fmt(shipping)}` : 'A calcular';
+    }
+  }
   if (totalEl) totalEl.textContent = `R$ ${fmt(total)}`;
+
+  // ── Badge "Frete Grátis" no resumo ──
+  const badge = $('#freeShippingBadge');
+  if (badge) {
+    badge.style.display = isFreeShipping ? 'flex' : 'none';
+  }
+
+  // ── Hint no painel de frete (step 2) ──
+  const hint = $('#shippingHint');
+  if (hint) {
+    if (isFreeShipping) {
+      hint.style.display   = 'flex';
+      hint.style.background = '#f0fdf4';
+      hint.style.border     = '1px solid #bbf7d0';
+      hint.style.color      = '#16a34a';
+      hint.innerHTML = '🎉 Parabéns! Seu pedido tem frete grátis!';
+    } else if (subtotal > 0) {
+      const remaining = FREE_SHIPPING_THRESHOLD - subtotal;
+      hint.style.display   = 'flex';
+      hint.style.background = '#fefce8';
+      hint.style.border     = '1px solid #fde047';
+      hint.style.color      = '#a16207';
+      hint.innerHTML = `💡 Adicione mais <strong>R$ ${fmt(remaining)}</strong> ao pedido para ganhar <strong>frete grátis</strong>!`;
+    } else {
+      hint.style.display = 'none';
+    }
+  }
+
+  // ── preços nas labels de frete (riscados se grátis) ──
+  const stdPrice = $('#shippingPriceStandard');
+  const expPrice = $('#shippingPriceExpress');
+  if (stdPrice) {
+    stdPrice.innerHTML = isFreeShipping
+      ? '<span style="text-decoration:line-through;color:#999;font-weight:400;">R$ 15,90</span> <span style="color:#16a34a;font-weight:700;">Grátis</span>'
+      : 'R$ 15,90';
+  }
+  if (expPrice) {
+    expPrice.innerHTML = isFreeShipping
+      ? '<span style="text-decoration:line-through;color:#999;font-weight:400;">R$ 29,90</span> <span style="color:#16a34a;font-weight:700;">Grátis</span>'
+      : 'R$ 29,90';
+  }
 }
 
 // ─────────────────────────────────────────────
@@ -578,9 +635,16 @@ function renderReview() {
   
   // Frete
   const shipping = SHIPPING_OPTIONS[checkoutData.shipping.method];
+  const cart = JSON.parse(localStorage.getItem('devsurf_cart') || '[]');
+  const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+  const isFreeShipping = subtotal >= FREE_SHIPPING_THRESHOLD;
   const reviewShipping = $('#reviewShipping');
   if (reviewShipping) {
-    reviewShipping.textContent = `${shipping.name} (${shipping.days}) - R$ ${fmt(shipping.price)}`;
+    if (isFreeShipping) {
+      reviewShipping.innerHTML = `${shipping.name} (${shipping.days}) - <span style="color:#16a34a;font-weight:700;">Grátis</span>`;
+    } else {
+      reviewShipping.textContent = `${shipping.name} (${shipping.days}) - R$ ${fmt(shipping.price)}`;
+    }
   }
   
   // Pagamento
@@ -588,9 +652,8 @@ function renderReview() {
   switch (checkoutData.payment.method) {
     case 'credit':
       const installments = checkoutData.payment.installments;
-      const cart = JSON.parse(localStorage.getItem('devsurf_cart') || '[]');
-      const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0) + checkoutData.shipping.price;
-      const installmentValue = total / installments;
+      const totalWithShipping = subtotal + (isFreeShipping ? 0 : shipping.price);
+      const installmentValue = totalWithShipping / installments;
       paymentText = `Cartão de Crédito - ${installments}x de R$ ${fmt(installmentValue)}`;
       break;
     case 'debit':
@@ -676,10 +739,6 @@ function showSuccessScreen(order) {
         <div class="pix-code-box">
           <code>00020126580014BR.GOV.BCB.PIX0136${order.id}5204000053039865802BR5925DEVSURF COMERCIO ELETRON6014RIO DE JANEIRO62070503***6304${Math.random().toString(36).substr(2, 4).toUpperCase()}</code>
           <button class="copy-pix-btn" onclick="copyPixCode()">
-            <svg class="icon-pix" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-            </svg>
             Copiar
           </button>
         </div>
@@ -889,13 +948,16 @@ document.addEventListener('DOMContentLoaded', () => {
   $$('input[name="shipping"]').forEach(radio => {
     radio.addEventListener('change', (e) => {
       checkoutData.shipping.method = e.target.value;
+      // guarda o preço base; updateTotals vai zerá-lo se subtotal >= threshold
       checkoutData.shipping.price = SHIPPING_OPTIONS[e.target.value].price;
       updateTotals();
     });
   });
   
-  // Definir frete padrão
-  checkoutData.shipping.price = SHIPPING_OPTIONS.standard.price;
+  // Definir frete padrão e calcular totais pela primeira vez
+  checkoutData.shipping.method = 'standard';
+  checkoutData.shipping.price  = SHIPPING_OPTIONS.standard.price;
+  updateTotals();
   
   // ─────────────────────────────────────────────
   // EVENT LISTENERS - PAGAMENTO
