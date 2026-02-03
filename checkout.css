@@ -504,6 +504,18 @@ margin-top: 10px;
   color: #000000;
 }
 
+.icon-pix {
+  width: 24px !important;
+  height: 24px !important;
+  flex-shrink: 0; /* Impede que o ícone amasse em telas pequenas */
+}
+
+.payment-info {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espaço entre ícone e texto */
+}
+
 /* ═══════════════════════════════════════════════
    RESUMO DO PEDIDO
    ═══════════════════════════════════════════════ */
@@ -850,6 +862,7 @@ margin-top: 10px;
   height: auto;
   display: block;
 }
+
 
 
 .pix-code-box {
