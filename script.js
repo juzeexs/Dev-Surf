@@ -1260,3 +1260,39 @@ const observer = new IntersectionObserver((entries) => {
 
 // Seleciona todas as imagens e coloca no observador
 document.querySelectorAll('.carousel-image').forEach(img => observer.observe(img));
+
+// ─────────────────────────────────────────────
+// ANIMAÇÃO DE ENTRADA (SCROLL)
+// ─────────────────────────────────────────────
+function initScrollAnimation() {
+  const cards = $$('.product-card');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+        // Para a animação não repetir ao subir a página, mantenha a linha abaixo:
+        observer.unobserve(entry.target); 
+      }
+    });
+  }, { 
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px' // Começa a animar 50px antes de entrar totalmente
+  });
+
+  cards.forEach(card => observer.observe(card));
+}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  // ... (outras funções já existentes) ...
+  
+  // Renderizar produtos
+  renderProducts();
+  bindProductButtons();
+  
+  // ATIVE AQUI:
+  initScrollAnimation(); 
+  
+  // ... (restante do código) ...
+});
