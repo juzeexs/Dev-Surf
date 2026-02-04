@@ -340,37 +340,32 @@ select {
     text-transform: uppercase;
     letter-spacing: 0.5px;
     padding: 0.5rem 0;
-    position: relative;
+    position: relative; /* Essencial para posicionar a linha */
     color: var(--dark-color);
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
-.nav-link span {
-    position: relative;
-    z-index: 1;
-}
-
-/* Efeito de hover/active - linha embaixo */
+/* Criando a linha invisível inicial */
 .nav-link::after {
     content: '';
     position: absolute;
-    bottom: -2px; /* Ajustado para não ficar colado na letra */
-    left: 50%;
-    transform: translateX(-50%);
     width: 0;
-    height: 3px;
-    /* Certifique-se de que --dark-color não seja a mesma cor do fundo */
-    background-color: var(--dark-color); 
-    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    border-radius: 2px;
-    visibility: hidden; /* Escondido por padrão */
-    opacity: 0;
+    height: 2px; /* Espessura da linha */
+    bottom: 0;
+    left: 0;
+    background-color: var(--dark-color); /* Cor da linha */
+    transition: width 0.3s ease; /* Faz a linha "crescer" e "encolher" */
 }
 
+/* Fazendo a linha crescer ao passar o mouse */
+.nav-link:hover::after {
+    width: 100%;
+}
 
-.nav-link:hover {
-    color: var(--dark-color);
+.nav-link span {
+    position: relative;
+    z-index: 1;
 }
 
 
