@@ -1245,3 +1245,18 @@ document.addEventListener('DOMContentLoaded', () => {
     cartBtn.addEventListener('click', openCart);
   }
 });
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        // Se o elemento estiver visível na tela
+        if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+        } else {
+            // Opcional: remove a classe para animar novamente ao subir a página
+            entry.target.classList.remove('show');
+        }
+    });
+}, { threshold: 0.1 }); // Dispara quando 10% da imagem aparece
+
+// Seleciona todas as imagens e coloca no observador
+document.querySelectorAll('.carousel-image').forEach(img => observer.observe(img));

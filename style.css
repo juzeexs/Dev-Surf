@@ -82,6 +82,36 @@ select {
   font-size: 16px;
 }
 
+.scroll-container {
+    overflow-x: hidden; /* Evita barra de rolagem horizontal durante a animação */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.carousel-image {
+    width: 300px; /* Ajuste conforme necessário */
+    transition: all 0.8s ease-out;
+    opacity: 0;
+}
+
+/* Estado inicial: Esquerda */
+.slide-left {
+    transform: translateX(-100px);
+}
+
+/* Estado inicial: Direita */
+.slide-right {
+    transform: translateX(100px);
+}
+
+/* Classe que será adicionada via JS quando o item estiver visível */
+.carousel-image.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
 /* --------------------------------------------
    HEADER
    -------------------------------------------- */
