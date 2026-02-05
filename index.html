@@ -16,13 +16,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <!-- ============================================
-         HEADER
-         ============================================ -->
     <header class="header" id="header">
-        
-        <!-- Barra de Promoção -->
         <div class="header-promo">
             <div class="container">
                 <div class="promo-content">
@@ -34,18 +28,12 @@
                 </div>
             </div>
         </div>
-
-        <!-- Navbar Principal -->
         <nav class="navbar">
             <div class="container">
                 <div class="navbar-content">
-                    
-                    <!-- Logo -->
                     <a href="#home" class="logo">
                         <h1>DEV<span>SURF</span></h1>
                     </a>
-                    
-                    <!-- Menu de Navegação -->
                     <ul class="nav-menu" id="navMenu">
                         <li class="nav-item">
                             <a href="#home" class="nav-link active">
@@ -73,11 +61,7 @@
                             </a>
                         </li>
                     </ul>
-                    
-                    <!-- Ações da Navbar -->
                     <div class="nav-actions">
-                        
-                        <!-- Carrinho -->
                         <button class="action-btn cart-btn" id="cartBtn" aria-label="Abrir carrinho">
                             <div class="cart-icon-wrapper">
                                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -89,8 +73,6 @@
                             </div>
                             <span class="action-label">Carrinho</span>
                         </button>
-                        
-                        <!-- Menu Hambúrguer (Mobile) -->
                         <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
                             <span class="hamburger-line"></span>
                             <span class="hamburger-line"></span>
@@ -101,50 +83,33 @@
             </div>
         </nav>
     </header>
-
-    <!-- ============================================
-         CARROSSEL DE IMAGENS
-         ============================================ -->
     <section class="image-carousel" id="home">
         <div class="carousel-track-container">
             <div class="carousel-track">
-                
-                <!-- Slide 1 -->
                 <div class="carousel-slide">
                     <img src="https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=1200&h=600&fit=crop" 
                          alt="Surfista pegando onda" 
                          class="carousel-image">
-                </div>
-                
-                <!-- Slide 2 -->
-                <div class="carousel-slide">
+                </div> <div class="carousel-slide">
                     <img src="https://quiksilver.vtexassets.com/arquivos/ids/305580/Camiseta-Quiksilver-M-C-Banner-Preto-Preto-P.jpg?v=638828468032300000" 
                          alt="Prancha de surf na praia" 
                          class="carousel-image">
                 </div>
-                
-                <!-- Slide 3 -->
                 <div class="carousel-slide">
                     <img src="https://quiksilver.vtexassets.com/arquivos/ids/410985/Mochila-Quiksilver-Esportiva-Quiksilver-H02-Preto-Preto-U.jpg?v=639051152732370000" 
                          alt="Surfista na água" 
                          class="carousel-image">
                 </div>
-                
-                <!-- Slide 4 -->
                 <div class="carousel-slide">
                     <img src="https://hurley.com.br/cdn/shop/files/HYBM010356_MARINHO_02_2.jpg?v=1757339899" 
                          alt="Onda perfeita" 
                          class="carousel-image">
                 </div>
-                
-                <!-- Slide 5 -->
                 <div class="carousel-slide">
                     <img src="https://quiksilver.vtexassets.com/arquivos/ids/345779/Bone-Quiksilver-Emb-Side-Omni-Red-RED-M.jpg?v=638949274839400000" 
                          alt="Pôr do sol na praia" 
                          class="carousel-image">
                 </div>
-                
-                <!-- Slide 6 -->
                 <div class="carousel-slide">
                     <img src="https://s.freesurf.com.br/product/2025/08/baby-look-moving-feminina-freesurf-squard.jpg" 
                          alt="Vista aérea da praia" 
@@ -152,8 +117,6 @@
                 </div>
             </div>
         </div>
-        
-        <!-- Setas de Navegação -->
         <button class="carousel-btn prev-btn" id="prevBtn" aria-label="Imagem anterior">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="15 18 9 12 15 6"></polyline>
@@ -165,8 +128,6 @@
                 <polyline points="9 18 15 12 9 6"></polyline>
             </svg>
         </button>
-        
-        <!-- Indicadores (Dots) -->
         <div class="carousel-dots">
             <button class="dot active" aria-label="Ir para imagem 1"></button>
             <button class="dot" aria-label="Ir para imagem 2"></button>
@@ -176,10 +137,6 @@
             <button class="dot" aria-label="Ir para imagem 6"></button>
         </div>
     </section>
-
-    <!-- ============================================
-         BARRA DE MARCAS (MARQUEE)
-         ============================================ -->
     <div class="header-promo">
         <div class="container">
             <div class="brands-marquee">
@@ -194,7 +151,6 @@
                     <span class="brand-item">Reef</span>
                     <span class="brand-item">RVCA</span>
                     <span class="brand-item">Vans</span>
-                    <!-- Duplicar para efeito contínuo -->
                     <span class="brand-item">Quiksilver</span>
                     <span class="brand-item">Hurley</span>
                     <span class="brand-item">Oakley</span>
@@ -209,14 +165,8 @@
             </div>
         </div>
     </div>
-
-    <!-- ============================================
-         SEÇÃO DE PRODUTOS
-         ============================================ -->
     <section class="products-section" id="produtos">
         <div class="container">
-            
-            <!-- Cabeçalho da Seção -->
             <div style="text-align: center; margin-bottom: 3rem; margin-top: 2rem;">
                 <h2 style="font-family: 'Bebas Neue', sans-serif; font-size: 40px; margin-bottom: 1rem; color: var(--dark-color);">
                     Produtos em Destaque
@@ -225,43 +175,28 @@
                     Descubra nossa seleção premium de equipamentos e acessórios de surf das melhores marcas do mercado.
                 </p>
             </div>
-
-            <!-- Campo de Busca -->
             <center><div class="search-container">
                 <div class="search-wrapper">
                    
                     <input type="text" id="product-search" placeholder="Buscar produtos..." autocomplete="off">
                 </div>
             </div></center>
-
-            <!-- Grid de Produtos -->
             <div class="products-grid" id="productsGrid">
-                <!-- Os produtos serão inseridos aqui via JavaScript -->
             </div>
         </div>
     </section>
-
-    <!-- ============================================
-         SEÇÃO DE MARCAS PARCEIRAS
-         ============================================ -->
     <section class="brands-section" id="marcas">
         <div class="container">
-            
-            <!-- Cabeçalho -->
             <div class="brands-header">
                 <h2 class="section-title">Nossas Marcas Parceiras</h2>
                 <p class="section-subtitle">
                     Trabalhamos com as melhores marcas do mundo do surf para oferecer produtos autênticos e de alta qualidade
                 </p>
             </div>
-            
-            <!-- Benefícios da Parceria -->
             <div class="partnership-benefits">
                 <h3>Por que Comprar Marcas Parceiras na DevSurf?</h3>
                 
                 <div class="benefits-grid">
-                    
-                    <!-- Benefício 1 -->
                     <div class="benefit-item">
                         <div class="benefit-icon">
                             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -271,8 +206,6 @@
                         <h4>100% Autêntico</h4>
                         <p>Produtos originais com certificado de autenticidade e nota fiscal</p>
                     </div>
-                    
-                    <!-- Benefício 2 -->
                     <div class="benefit-item">
                         <div class="benefit-icon">
                             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -282,8 +215,6 @@
                         <h4>Lançamentos Exclusivos</h4>
                         <p>Acesso antecipado às novidades e edições limitadas</p>
                     </div>
-                    
-                    <!-- Benefício 3 -->
                     <div class="benefit-item">
                         <div class="benefit-icon">
                             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -293,8 +224,6 @@
                         <h4>Garantia Estendida</h4>
                         <p>Cobertura adicional e suporte técnico especializado</p>
                     </div>
-                    
-                    <!-- Benefício 4 -->
                     <div class="benefit-item">
                         <div class="benefit-icon">
                             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -313,20 +242,13 @@
     <img src="https://hurley.com.br/cdn/shop/articles/Blog_-_Wetsuits_Web.jpg?" alt="Hurley" class="carousel-image slide-right">
     <img src="https://logos-world.net/wp-content/uploads/2020/09/Oakley-Symbol.jpg" alt="Oakley" class="carousel-image slide-left">
 </section>
-    <!-- ============================================
-         SEÇÃO SOBRE A DEVSURF
-         ============================================ -->
     <section class="about-section" id="sobre">
         <div class="container">
-            
-            <!-- Cabeçalho -->
             <div class="about-header">
                 <h2 class="section-title">Sobre a DevSurf</h2>
             </div>
             
             <div class="about-content">
-                
-                <!-- Bloco 1: História -->
                 <div class="about-block">
                     <div class="about-icon">
                         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -342,8 +264,6 @@
                         Hoje, contamos com mais de 50 mil clientes ativos em todo o Brasil, mantendo o mesmo espírito que nos motivou no início: conectar pessoas às ondas e ao estilo de vida do surf.
                     </p>
                 </div>
-
-                <!-- Bloco 2: Reconhecimento -->
                 <div class="about-block">
                     <div class="about-icon">
                         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -358,8 +278,6 @@
                         Somos parceiros oficiais das principais marcas internacionais e patrocinadores de atletas profissionais, reforçando nosso compromisso com o desenvolvimento do surf brasileiro.
                     </p>
                 </div>
-
-                <!-- Bloco 3: Diferenciais -->
                 <div class="about-block">
                     <div class="about-icon">
                         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -377,28 +295,20 @@
                         <li><strong>Comunidade Ativa:</strong> Eventos, campeonatos e conteúdo exclusivo para nossos clientes.</li>
                     </ul>
                 </div>
-
-                <!-- Bloco 4: Missão e Valores (Full Width) -->
                 <div class="about-block full-width">
-                    <div class="mission-values">
-                        
-                        <!-- Missão -->
+                    <div class="mission-values">      
                         <div class="mission-item">
                             <h4>Missão</h4>
                             <p>
                                 Proporcionar a melhor experiência de compra para surfistas de todos os níveis, oferecendo produtos de qualidade superior e inspirando mais pessoas a abraçarem o estilo de vida do surf.
                             </p>
                         </div>
-                        
-                        <!-- Visão -->
                         <div class="mission-item">
                             <h4>Visão</h4>
                             <p>
                                 Ser a principal referência em equipamentos de surf na América Latina, reconhecida pela excelência no atendimento, inovação e compromisso com a cultura do surf.
                             </p>
                         </div>
-                        
-                        <!-- Valores -->
                         <div class="mission-item">
                             <h4>Valores</h4>
                             <ul>
@@ -414,14 +324,8 @@
             </div>
         </div>
     </section>
-
-    <!-- ============================================
-         FOOTER
-         ============================================ -->
     <footer class="devsurf-footer" id="contato">
         <div class="footer-container">
-            
-            <!-- Newsletter -->
             <section class="footer-newsletter">
                 <div class="news-text">
                     <h3>Onde o Surf encontra o Dev</h3>
@@ -432,11 +336,7 @@
                     <button type="submit" class="submit">OK</button>
                 </form>
             </section>
-
-            <!-- Grid do Footer -->
             <div class="footer-grid">
-                
-                <!-- Coluna 1: Marca -->
                 <div class="footer-brand">
                     <h2 class="logo-text">DEV<span>SURF</span></h2>
                     <p>Equipamentos de alta performance para surfistas que codam.</p>
@@ -461,8 +361,6 @@
                         </a>
                     </div>
                 </div>
-
-                <!-- Coluna 2: Equipamentos -->
                 <div class="footer-links">
                     <h4>Equipamentos</h4>
                     <ul>
@@ -472,8 +370,6 @@
                         <li><a href="#produtos">Drops de Inverno</a></li>
                     </ul>
                 </div>
-
-                <!-- Coluna 3: Suporte -->
                 <div class="footer-links">
                     <h4>Suporte</h4>
                     <ul>
@@ -483,8 +379,6 @@
                         <li><a href="#sobre">FAQ</a></li>
                     </ul>
                 </div>
-
-                <!-- Coluna 4: Contato -->
                 <div class="footer-contact">
                     <h4>Lineup</h4>
                     <p>
@@ -509,8 +403,6 @@
                     </p>
                 </div>
             </div>
-
-            <!-- Footer Bottom -->
             <div class="footer-bottom">
                 <div class="copyright">
                     <p>&copy; 2026 DevSurf. Built with &lt;code&gt; and salt water.</p>
@@ -530,16 +422,11 @@
             </div>
         </div>
     </footer>
-    <!-- ============================================
-         BOTÃO VOLTAR AO TOPO
-         ============================================ -->
     <button class="scroll-to-top" id="scrollToTop" aria-label="Voltar ao topo">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="18 15 12 9 6 15"></polyline>
         </svg>
     </button>
-
-    <!-- JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>
