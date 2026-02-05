@@ -356,6 +356,7 @@ select {
     left: 0;
     background-color: var(--dark-color); /* Cor da linha */
     transition: width 0.3s ease; /* Faz a linha "crescer" e "encolher" */
+border-radius: 10px;
 }
 
 /* Fazendo a linha crescer ao passar o mouse */
