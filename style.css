@@ -1,5 +1,4 @@
 :root {
-    /* Cores */
     --primary-color: #000000;
     --secondary-color: #333333;
     --dark-color: #1a1a1a;
@@ -9,18 +8,15 @@
     --white-color: #ffffff;
     --accent-color: #0ea5e9;
     
-    /* Sombras */
     --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
     --shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
     --shadow-lg: 0 4px 20px rgba(0, 0, 0, 0.12);
     --shadow-xl: 0 10px 40px rgba(0, 0, 0, 0.15);
     
-    /* Transições */
     --transition-fast: all 0.2s ease;
     --transition: all 0.3s ease;
     --transition-slow: all 0.5s ease;
     
-    /* Outros */
     --border-radius: 8px;
     --header-height: 120px;
     --navbar-height: 70px;
@@ -32,9 +28,6 @@
 
 }
 
-/* --------------------------------------------
-   RESET & BASE
-   -------------------------------------------- */
 * {
     margin: 0;
     padding: 0;
@@ -83,7 +76,7 @@ select {
 }
 
 .scroll-container {
-    overflow-x: hidden; /* Evita barra de rolagem horizontal durante a animação */
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -91,30 +84,24 @@ select {
 }
 
 .carousel-image {
-    width: 300px; /* Ajuste conforme necessário */
+    width: 300px;
     transition: all 0.8s ease-out;
     opacity: 0;
 }
 
-/* Estado inicial: Esquerda */
 .slide-left {
     transform: translateX(-100px);
 }
 
-/* Estado inicial: Direita */
 .slide-right {
     transform: translateX(100px);
 }
 
-/* Classe que será adicionada via JS quando o item estiver visível */
 .carousel-image.show {
     opacity: 1;
     transform: translateX(0);
 }
 
-/* --------------------------------------------
-   HEADER
-   -------------------------------------------- */
 .header {
     position: fixed;
     top: 0;
@@ -127,7 +114,6 @@ select {
     transition: var(--transition);
 }
 
-/* Efeito de scroll */
 .header.scrolled {
     box-shadow: var(--shadow-lg);
 }
@@ -143,9 +129,6 @@ select {
     }
 }
 
-/* --------------------------------------------
-   BARRA DE PROMOÇÃO
-   -------------------------------------------- */
 .header-promo {
     background: linear-gradient(135deg, var(--dark-color) 0%, #2d2d2d 100%);
     color: var(--white-color);
@@ -205,9 +188,6 @@ select {
     opacity: 0.5;
 }
 
-/* --------------------------------------------
-   NAVBAR
-   -------------------------------------------- */
 .navbar {
     background: var(--white-color);
     position: relative;
@@ -221,10 +201,6 @@ select {
     height: var(--navbar-height);
     gap: 2rem;
 }
-
-/* --------------------------------------------
-   LOGO
-   -------------------------------------------- */
 
 .logo {
     display: flex;
@@ -241,23 +217,16 @@ select {
     margin-top: 3px;
 }
 
-/* Contorno simples e ultra fino */
 .logo h1 span {
     color: black;
     transition: all 0.3s ease;
 }
 
-/* Preenchimento simples no hover */
 .logo:hover h1 span {
     color: var(--dark-color);
     -webkit-text-stroke: 0.1px var(--dark-color);
 }
 
-
-
-/* --------------------------------------------
-   BUSCA DE PRODUTOS
-   -------------------------------------------- */
 #product-search {
     width: 100%;
     max-width: 500px;
@@ -287,7 +256,6 @@ select {
     font-weight: 400;
 }
 
-/* Responsivo - Busca de Produtos */
 @media (max-width: 768px) {
     #product-search {
         max-width: 100%;
@@ -317,9 +285,6 @@ select {
     height: 100%;
 }
 
-/* --------------------------------------------
-   MENU DE NAVEGAÇÃO
-   -------------------------------------------- */
 .nav-menu {
     display: flex;
     list-style: none;
@@ -340,26 +305,24 @@ select {
     text-transform: uppercase;
     letter-spacing: 0.5px;
     padding: 0.5rem 0;
-    position: relative; /* Essencial para posicionar a linha */
+    position: relative; 
     color: var(--dark-color);
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
-/* Criando a linha invisível inicial */
 .nav-link::after {
     content: '';
     position: absolute;
     width: 0;
-    height: 2px; /* Espessura da linha */
+    height: 2px; 
     bottom: 0;
     left: 0;
-    background-color: var(--dark-color); /* Cor da linha */
-    transition: width 0.3s ease; /* Faz a linha "crescer" e "encolher" */
+    background-color: var(--dark-color);
+    transition: width 0.3s ease;
 border-radius: 10px;
 }
 
-/* Fazendo a linha crescer ao passar o mouse */
 .nav-link:hover::after {
     width: 100%;
 }
@@ -369,10 +332,6 @@ border-radius: 10px;
     z-index: 1;
 }
 
-
-/* --------------------------------------------
-   AÇÕES DA NAVBAR (Ícones)
-   -------------------------------------------- */
 .nav-actions {
     display: flex;
     align-items: center;
@@ -410,7 +369,6 @@ border-radius: 10px;
     white-space: nowrap;
 }
 
-/* Ícone do Carrinho */
 .cart-icon-wrapper {
     position: relative;
     display: flex;
@@ -440,11 +398,6 @@ border-radius: 10px;
     display: none;
 }
 
-/* --------------------------------------------
-   CARRINHO LATERAL
-   -------------------------------------------- */
-/* Overlay do Carrinho */
-/* Overlay do Carrinho */
 #cartOverlay {
   position: fixed;
   inset: 0;
@@ -461,7 +414,6 @@ border-radius: 10px;
   visibility: visible;
 }
 
-/* Drawer do Carrinho */
 #cartDrawer {
   position: fixed;
   top: 0;
@@ -484,7 +436,6 @@ border-radius: 10px;
   transform: translateX(0);
 }
 
-/* Responsividade */
 @media (max-width: 768px) {
   #cartDrawer {
     --cart-width: 85%;
@@ -497,7 +448,6 @@ border-radius: 10px;
   }
 }
 
-/* Cabeçalho Compacto */
 .cart-header {
   padding: 1rem 1.25rem;
   border-bottom: 1px solid var(--border-color, #e5e7eb);
@@ -533,11 +483,10 @@ border-radius: 10px;
   background: #f3f4f6;
 }
 
-/* Listagem de Itens Otimizada */
 #cartItems {
   display: flex;
   flex-direction: column;
-  gap: 20px; /* Aumente aqui para desgrudar os cards */
+  gap: 20px;
   padding-bottom: 20px;
 }
 
@@ -555,7 +504,6 @@ border-radius: 10px;
   border-radius: 3px;
 }
 
-/* Item do Carrinho - COMPACTO */
 .cart-item {
   display: grid;
   grid-template-columns: 50px 1fr auto;
@@ -563,9 +511,8 @@ border-radius: 10px;
   padding: 0.625rem 0;
   border-bottom: 1px solid var(--border-color, #e5e7eb);
   align-items: center;
-  /* ... outras propriedades ... */
-  padding: 16px; /* Aumentado de 12px para 16px */
-  margin-bottom: 6px; /* Opcional: uma leve margem de segurança */
+  padding: 16px;
+  margin-bottom: 6px;
 
 }
 
@@ -573,7 +520,6 @@ border-radius: 10px;
   border-bottom: none;
 }
 
-/* Imagem Miniatura */
 .cart-item img {
   width: 50px;
   height: 50px;
@@ -583,7 +529,6 @@ border-radius: 10px;
   flex-shrink: 0;
 }
 
-/* Informações do Item - Compactas */
 .cart-item-info {
   min-width: 0;
   display: flex;
@@ -614,7 +559,6 @@ border-radius: 10px;
   margin: 0;
 }
 
-/* Área de Ações - Compacta */
 .cart-item-actions {
   display: flex;
   flex-direction: column;
@@ -622,7 +566,6 @@ border-radius: 10px;
   gap: 0.5rem;
 }
 
-/* Controles de Quantidade - MINI */
 .qty-control {
   display: flex;
   align-items: center;
@@ -668,7 +611,6 @@ border-radius: 10px;
   color: #111827;
 }
 
-/* Botão Remover - Compacto */
 .remove-btn {
   background: none;
   border: none;
@@ -685,7 +627,6 @@ border-radius: 10px;
   background: #fee2e2;
 }
 
-/* Rodapé Compacto */
 #cartFooter {
   padding: 1rem 1.25rem;
   background: #f9fafb;
@@ -693,7 +634,6 @@ border-radius: 10px;
   flex-shrink: 0;
 }
 
-/* Resumo de Totais - Compacto */
 .cart-summary {
   display: flex;
   flex-direction: column;
@@ -720,7 +660,6 @@ border-radius: 10px;
   border-top: 1px solid #e5e7eb;
 }
 
-/* Botão de Finalizar - Compacto */
 .checkout-btn {
   width: 100%;
   padding: 0.875rem;
@@ -743,7 +682,6 @@ border-radius: 10px;
   transform: scale(0.98);
 }
 
-/* Estado Vazio */
 .cart-empty {
   display: flex;
   flex-direction: column;
@@ -766,7 +704,6 @@ border-radius: 10px;
   font-size: 0.9375rem;
 }
 
-/* Contador de Itens no Header */
 .cart-count {
   background: var(--primary-color, #3b82f6);
   color: white;
@@ -777,7 +714,6 @@ border-radius: 10px;
   margin-left: 0.5rem;
 }
 
-/* Otimizações Mobile */
 @media (max-width: 480px) {
   .cart-item {
     grid-template-columns: 45px 1fr auto;
@@ -808,7 +744,6 @@ border-radius: 10px;
   }
 }
 
-/* Performance - Reduzir animações */
 @media (prefers-reduced-motion: reduce) {
   #cartOverlay,
   #cartDrawer,
@@ -819,15 +754,12 @@ border-radius: 10px;
   }
 }
 
-/* Ajustes para telas grandes */
 @media (min-width: 1440px) {
   #cartDrawer {
     --cart-width: 420px;
   }
 }
-/* --------------------------------------------
-   MENU HAMBÚRGUER (Mobile)
-   -------------------------------------------- */
+
 .hamburger {
     display: none;
     flex-direction: column;
@@ -863,17 +795,10 @@ border-radius: 10px;
     transform: rotate(-45deg) translate(7px, -7px);
 }
 
-/* --------------------------------------------
-   SEARCH OVERLAY
-   -------------------------------------------- */
-
-
 .search-overlay.active {
     opacity: 1;
     visibility: visible;
 }
-
-
 
 @keyframes slideUp {
     from {
@@ -886,42 +811,35 @@ border-radius: 10px;
     }
 }
 
-/* 1. O Overlay ocupa a tela inteira e vira um "box" centralizador */
 .search-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh; /* Opcional: use 100dvh para browsers modernos */
+    height: 100vh;
     background: rgba(15, 23, 42, 0.96);
     backdrop-filter: blur(10px);
     z-index: 2000;
-    
-    /* Centralização em qualquer tela */
     display: flex;
-    align-items: center;      /* Centraliza verticalmente */
-    justify-content: center;   /* Centraliza horizontalmente */
-    
+    align-items: center;
+    justify-content: center;
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
 }
 
-/* 2. O Container não foge do centro */
 .search-container {
     width: 90%;
-    max-width: 700px; /* Largura máxima para desktop */
+    max-width: 700px;
     position: relative;
     display: flex;
     flex-direction: column;
-    /* Removemos margens fixas que podem quebrar o flex */
     margin: 0; 
 }
 
-/* 3. Ajuste do Botão Close para não quebrar o alinhamento */
 .close-search {
     position: absolute;
-    top: -60px; /* Fica acima do input */
+    top: -60px;
     right: 0;
     background: none;
     border: none;
@@ -930,20 +848,16 @@ border-radius: 10px;
     cursor: pointer;
 }
 
-/* 4. Estilização do Input Principal */
 .search-input {
     width: 100%;
     padding: 1.5rem 2rem 1.5rem 4rem;
-    font-size: 1.5rem; /* Um pouco maior para desktop */
+    font-size: 1.5rem;
     border-radius: 12px;
     border: none;
     background: white;
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
 }
 
-
-
-/* Input de Busca */
 .search-input-wrapper {
     position: relative;
     margin-bottom: 2rem;
@@ -1009,7 +923,6 @@ border-radius: 10px;
     color: var(--gray-light);
 }
 
-/* Sugestões de Busca */
 .search-suggestions {
     background: var(--white-color);
     border-radius: var(--border-radius);
@@ -1050,7 +963,6 @@ border-radius: 10px;
     border-color: var(--dark-color);
 }
 
-/* Resultados da Busca */
 .search-results {
     background: var(--white-color);
     border-radius: var(--border-radius);
@@ -1064,7 +976,6 @@ border-radius: 10px;
     display: block;
 }
 
-/* Scrollbar personalizada */
 .search-results::-webkit-scrollbar {
     width: 8px;
 }
@@ -1083,11 +994,6 @@ border-radius: 10px;
     background: var(--dark-color);
 }
 
-/* --------------------------------------------
-   RESPONSIVIDADE
-   -------------------------------------------- */
-
-/* Tablets */
 @media (max-width: 992px) {
     .nav-menu {
         gap: 1.5rem;
@@ -1102,7 +1008,6 @@ border-radius: 10px;
     }
 }
 
-/* Mobile */
 @media (max-width: 768px) {
     :root {
         --header-height: 110px;
@@ -1129,7 +1034,6 @@ border-radius: 10px;
         font-size: 1.6rem;
     }
     
-    /* Menu mobile */
     .nav-menu {
         position: fixed;
         top: var(--header-height);
@@ -1173,11 +1077,10 @@ border-radius: 10px;
         gap: 0.5rem;
     }
     
-    /* Search mobile */
 .search-container {
     width: 90%;
-    max-width: 600px; /* Reduzi um pouco para ficar mais elegante no centro */
-    margin: 0 auto;   /* Margem automática para segurança */
+    max-width: 600px;
+    margin: 0 auto;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -1203,7 +1106,6 @@ border-radius: 10px;
     }
 }
 
-/* Mobile pequeno */
 @media (max-width: 480px) {
     .promo-text {
         font-size: 0.75rem;
@@ -1223,9 +1125,6 @@ border-radius: 10px;
     }
 }
 
-/* --------------------------------------------
-   UTILIDADES
-   -------------------------------------------- */
 .fade-in {
     animation: fadeIn 0.5s ease-out;
 }
@@ -1239,15 +1138,10 @@ border-radius: 10px;
     }
 }
 
-/* Ocultar scroll quando overlay aberto */
 body.search-active,
 body.menu-active {
     overflow: hidden;
 }
-
-/* ============================================
-   CARROSSEL DE IMAGENS (SLIDE)
-   ============================================ */
 
 .image-carousel {
     margin-top: var(--header-height);
@@ -1285,7 +1179,6 @@ body.menu-active {
     display: block;
 }
 
-/* Setas de Navegação */
 .carousel-btn {
     position: absolute;
     top: 50%;
@@ -1320,7 +1213,6 @@ body.menu-active {
     right: 2rem;
 }
 
-/* Indicadores (Dots) */
 .carousel-dots {
     position: absolute;
     bottom: 2rem;
@@ -1353,7 +1245,6 @@ body.menu-active {
     border-radius: 6px;
 }
 
-/* Responsividade Carrossel */
 @media (max-width: 992px) {
     .image-carousel {
         height: 400px;
@@ -1432,10 +1323,6 @@ body.menu-active {
     }
 }
 
-/* ============================================
-   MARQUEE DE MARCAS
-   ============================================ */
-
 .brands-marquee {
     overflow: hidden;
     white-space: nowrap;
@@ -1480,7 +1367,6 @@ body.menu-active {
     }
 }
 
-/* ===== PRODUTOS ===== */
 .products-section {
     padding: 1rem 0;
     background-color: white;
@@ -1500,16 +1386,12 @@ body.menu-active {
     transform: translateY(40px);
     transition: opacity 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), 
                 transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
-    
-    /* Melhora a performance de renderização */
     will-change: transform, opacity;
     backface-visibility: hidden;
     -webkit-font-smoothing: antialiased;
-    
-    /* Estilos originais */
     background: white;
     border-radius: 12px;
-    overflow: hidden; /* Garante que nada saia das bordas arredondadas */
+    overflow: hidden;
     border: 2px solid #e0e0e0;
     display: flex;
     flex-direction: column;
@@ -1520,15 +1402,12 @@ body.menu-active {
     transform: translateY(0);
 }
 
-/* Garante que a imagem dentro do card não trema */
 .product-card img {
     display: block;
     width: 100%;
     height: auto;
     backface-visibility: hidden;
 }
-
-
 
 .product-card:hover {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
@@ -1603,7 +1482,6 @@ body.menu-active {
     margin-right: 8px;
 }
 
-/* ─── Marca do produto ─── */
 .product-brand {
     font-size: 0.78rem;
     color: #999;
@@ -1613,7 +1491,6 @@ body.menu-active {
     letter-spacing: 0.8px;
 }
 
-/* ─── Seletor de tamanhos ─── */
 .product-sizes {
     margin: 0 0 14px;
 }
@@ -1668,7 +1545,6 @@ body.menu-active {
     text-decoration: line-through;
 }
 
-/* ─── Toast de erro (tamanho não selecionado) ─── */
 .devsurf-toast.toast-error {
     background: #e63946;
 }
@@ -1677,7 +1553,6 @@ body.menu-active {
     color: #fff;
 }
 
-/* ─── Tamanho no item do carrinho ─── */
 .cart-item-size {
     font-size: 0.72rem;
     color: #888;
@@ -1709,16 +1584,11 @@ body.menu-active {
     border-color: #333;
 }
 
-/* Responsivo Produtos */
 @media (max-width: 768px) {
     .products-grid {
         grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     }
 }
-
-/* ===================================
-   SEÇÃO SOBRE A DEVSURF
-   =================================== */
 
 .about-section {
     padding: 80px 0;
@@ -1866,7 +1736,6 @@ body.menu-active {
     margin-right: 10px;
 }
 
-/* Responsividade About */
 @media (max-width: 768px) {
     .about-section {
         padding: 60px 0;
@@ -1913,10 +1782,6 @@ body.menu-active {
     }
 }
 
-/* ============================================
-   SEÇÃO DE MARCAS PARCEIRAS
-   ============================================ */
-
 .brands-section {
     padding: 80px 0;
     background: white;
@@ -1945,7 +1810,6 @@ body.menu-active {
     line-height: 1.6;
 }
 
-/* Grid de Marcas */
 .brands-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -1953,7 +1817,6 @@ body.menu-active {
     margin-bottom: 50px;
 }
 
-/* Card da Marca */
 .brand-card {
     background: white;
     border-radius: 24px;
@@ -1961,7 +1824,6 @@ body.menu-active {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Logo da Marca */
 .brand-logo {
     height: 100px;
     display: flex;
@@ -1979,7 +1841,6 @@ body.menu-active {
     object-fit: contain;
 }
 
-/* Informações da Marca */
 .brand-info h3 {
     font-size: 1.4rem;
     font-weight: 700;
@@ -1989,7 +1850,6 @@ body.menu-active {
     letter-spacing: 1px;
 }
 
-/* Badge de Parceria */
 .brand-badge {
     display: inline-block;
     padding: 4px 12px;
@@ -2010,7 +1870,6 @@ body.menu-active {
     font-size: 0.95rem;
 }
 
-/* Lista de Benefícios da Marca */
 .brand-benefits {
     list-style: none;
     padding: 0;
@@ -2024,7 +1883,6 @@ body.menu-active {
     line-height: 1.5;
 }
 
-/* Benefícios da Parceria */
 .partnership-benefits {
     background: white;
     border-radius: 24px;
@@ -2042,19 +1900,16 @@ body.menu-active {
     letter-spacing: 1.5px;
 }
 
-/* Grid de Benefícios */
 .benefits-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 25px;
 }
 
-/* Item de Benefício */
 .benefit-item {
     text-align: center;
 }
 
-/* Ícone do Benefício */
 .benefit-icon {
     width: 60px;
     height: 60px;
@@ -2085,7 +1940,6 @@ body.menu-active {
     margin: 0;
 }
 
-/* Responsividade Brands */
 @media (max-width: 768px) {
     .brands-section {
         padding: 60px 0;
@@ -2158,10 +2012,6 @@ body.menu-active {
     }
 }
 
-/* ============================================
-   FOOTER
-   ============================================ */
-
 :root {
     --bg-footer: #0a0a0a;
     --text-main: #ffffff;
@@ -2182,7 +2032,6 @@ body.menu-active {
     padding: 0 25px;
 }
 
-/* Newsletter Section */
 .footer-newsletter {
     display: flex;
     justify-content: space-between;
@@ -2235,7 +2084,6 @@ body.menu-active {
     background: #e0e0e0; 
 }
 
-/* Grid de Conteúdo */
 .footer-grid {
     display: grid;
     grid-template-columns: 1.2fr 0.8fr 0.8fr 1fr;
@@ -2319,7 +2167,6 @@ body.menu-active {
     color: var(--text-muted); 
 }
 
-/* Bottom Bar */
 .footer-bottom {
     margin-top: 80px;
     padding-top: 30px;
@@ -2342,7 +2189,6 @@ body.menu-active {
     opacity: 0.5; 
 }
 
-/* Responsividade Footer */
 @media (max-width: 900px) {
     .footer-grid { 
         grid-template-columns: 1fr 1fr; 
@@ -2375,10 +2221,6 @@ body.menu-active {
     }
 }
 
-/* ============================================
-   BOTÃO VOLTAR AO TOPO
-   ============================================ */
-
 .scroll-to-top {
     position: fixed;
     bottom: 30px;
@@ -2400,15 +2242,19 @@ body.menu-active {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.scroll-to-top:hover {
+    transform: translateY(-3px);
+background-color: #ffffff;
+border: 2px solid black;
+color: #000000;
+
+}
+
 .scroll-to-top.visible {
     opacity: 1;
     visibility: visible;
     transform: translateX(0);
-}
-
-.scroll-to-top:hover {
-    background-color: #333;
-    transform: translateY(-3px);
+    
 }
 
 .scroll-to-top svg {
