@@ -2190,7 +2190,8 @@ body.menu-active {
 }
 
 @media (max-width: 900px) {
-    .footer-grid { 
+    
+.footer-grid { 
         grid-template-columns: 1fr 1fr; 
     }
     
@@ -2199,6 +2200,7 @@ body.menu-active {
         text-align: center; 
         gap: 30px; 
     }
+}
 
 @media (max-width: 500px) {
     .footer-grid { 
