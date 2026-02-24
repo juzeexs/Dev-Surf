@@ -1,42 +1,48 @@
 # 🏄‍♂️ DevSurf - E-commerce de Surf
 
-O **DevSurf** é uma plataforma de e-commerce moderna e responsiva focada no nicho de surf, desenvolvida com tecnologias web nativas. O projeto simula uma experiência completa de compra, desde a vitrine de produtos até um checkout dinâmico de múltiplos passos.
-
-
-
-## 🚀 Funcionalidades
-
-### 🛒 Experiência do Usuário
-- **Vitrine Dinâmica:** Listagem de produtos com filtros e sistema de busca em tempo real.
-- **Carrinho de Compras:** Adição/remoção de itens, controle de quantidade e cálculo automático de subtotal.
-- **Animações Fluidas:** Interface com transições suaves e efeitos de scroll para uma navegação premium.
-- **Totalmente Responsivo:** Design adaptado para dispositivos móveis, tablets e desktops.
-
-### 💳 Sistema de Checkout (Multi-step)
-- **Passo 1 (Identificação):** Coleta de dados básicos do cliente.
-- **Passo 2 (Entrega):** Integração visual para endereço com lógica de frete.
-- **Passo 3 (Frete):** Cálculo dinâmico (Padrão vs Expresso) com regra de **Frete Grátis** para compras acima de R$ 299,00.
-- **Passo 4 (Pagamento):** Simulação de pagamento via Cartão de Crédito, PIX ou Boleto, incluindo máscaras de entrada (CPF, Cartão, Data).
+O **DevSurf** é uma plataforma de e-commerce moderna, rápida e totalmente responsiva dedicada ao estilo de vida do surf. O projeto oferece uma experiência de compra completa, simulando desde a escolha de produtos de marcas como Quiksilver e Hurley até a finalização do pagamento.
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
-
-O projeto foi construído utilizando o "Vanilla Stack" (sem frameworks pesados) para garantir máxima performance:
-
-- **HTML5:** Estrutura semântica e acessível.
-- **CSS3:** Estilização avançada com Variáveis CSS, Flexbox, Grid e Keyframe Animations.
-- **JavaScript (ES6+):** Manipulação de DOM, lógica de negócio do carrinho, máscaras de formulário e persistência de dados.
-- **Google Fonts:** Tipografia selecionada (Bebas Neue & Inter) para identidade visual forte.
+## 🌐 Acesse o Projeto
+O site está publicado e pode ser acessado pelo link abaixo:
+👉 **[https://devsurf.netlify.app/](https://devsurf.netlify.app/)**
 
 ---
 
-## 📂 Estrutura do Projeto
+## 🚀 Funcionalidades Principais
+
+### 🛍️ Experiência de Loja (Storefront)
+- **Catálogo Dinâmico:** Listagem de produtos com preços, descontos e descrições detalhadas.
+- **Busca e Filtros:** Sistema de busca em tempo real e filtragem por categorias.
+- **Carrinho Inteligente:** Gerenciamento de itens (adicionar, remover, alterar quantidade) com persistência via `localStorage`.
+- **Animações de Scroll:** Efeito de entrada suave dos produtos utilizando `Intersection Observer`.
+
+### 💳 Checkout de Alta Performance (Multi-step)
+- **Fluxo em 4 Etapas:** Identificação, Endereço, Frete e Pagamento.
+- **Validação de Frete:** Lógica de **Frete Grátis** para compras acima de R$ 299,00.
+- **Máscaras de Input:** Formatação automática para CPF, Telefone, CEP e Cartão de Crédito.
+- **Simulador de Pagamento:** Suporte visual para PIX (com geração de QR Code), Boleto e Cartão (com parcelamento).
+
+---
+
+## 🛠️ Tecnologias e Ferramentas
+
+Para garantir leveza e performance, o projeto foi desenvolvido sem frameworks pesados:
+
+- **Frontend:** HTML5 Semântico e CSS3 (Variáveis, Flexbox, Grid).
+- **Lógica:** JavaScript Vanilla (ES6+).
+- **Design:** Tipografia via Google Fonts (Bebas Neue & Montserrat).
+- **Ícones:** SVG inline e Lucide-style icons para uma interface limpa.
+
+---
+
+## 📂 Organização dos Arquivos
 
 ```text
-├── index.html          # Página principal / Vitrine
-├── checkout.html       # Fluxo de finalização de compra
-├── style.css           # Estilos globais e da vitrine
-├── checkout.css        # Estilos específicos do processo de pagamento
-├── script.js           # Lógica da loja, filtros e carrinho
-└── checkout.js         # Lógica do formulário multi-etapas e frete
+├── index.html          # Home e Vitrine de Produtos
+├── checkout.html       # Estrutura do checkout em etapas
+├── style.css           # Estilização global e componentes da loja
+├── checkout.css        # Estilos específicos do fluxo de pagamento
+├── script.js           # Lógica do carrinho, filtros e animações
+└── checkout.js         # Inteligência do formulário, frete e máscaras
